@@ -1,0 +1,73 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Petition
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: petition
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        signatories_list:
+          label: Utilisateurs
+        partenaires_list:
+          label: Partenaires
+        produits_list:
+          label: Produits
+        tags_list:
+          label: Tags
+        is_active:
+          label: Active
+      list:
+        display:
+          - '=title'
+          - collectes_list
+          - signature_list
+          - action_list
+          - signatories_list
+          - partenaires_list
+          - produits_list
+          - tags_list
+          - text
+          - slogan
+          - is_active
+          - url_feed_actu
+          - url_feed_communique
+          - created_at
+          - updated_at
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - title
+          - is_active
+          - text
+          - slogan
+          - url_feed_actu
+          - url_feed_communique
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [title, is_active]
+          Text: [text]
+          Utilisateurs: [signatories_list]
+          Partenaires: [partenaires_list]
+          Produits: [produits_list]
+          Tags: [tags]
+          Collectes: [collectes_list]
+          Signatures: [signature_list]
+          Actions: [action_list]
+          Others: [slogan, url_feed_actu, url_feed_communique]
+        class: PetitionAdminForm
+        fields:
+          url_feed_actu: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
+          url_feed_communique: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
+      edit: ~
+      new: ~

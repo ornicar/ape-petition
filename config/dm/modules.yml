@@ -1,0 +1,34 @@
+Content:
+
+  Global:
+  
+    main:                   # the main module is required, and must not be removed.
+      components:
+        header:
+        footer:
+
+  Petition:
+
+    dmUser:
+      name:           Utilisateur
+
+    petition:
+      name:           Pétition
+      components:
+        list:
+        show:
+
+    country:
+      name:           Pays
+
+    collecte:
+
+    signature:
+
+    action:
+
+    partenaire:
+
+    produit:
+
+    citation:

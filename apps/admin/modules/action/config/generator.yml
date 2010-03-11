@@ -1,0 +1,49 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Action
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: action
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        is_active:
+          label: Active
+      list:
+        display:
+          - '=title'
+          - petition_id
+          - text
+          - begin_at
+          - objectif
+          - is_active
+          - created_at
+          - updated_at
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - title
+          - is_active
+          - petition_id
+          - text
+          - begin_at
+          - objectif
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [title, is_active, petition_id]
+          Text: [text]
+          Others: [begin_at, objectif]
+        class: ActionAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

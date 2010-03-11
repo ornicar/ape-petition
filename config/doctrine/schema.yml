@@ -1,0 +1,193 @@
+DmUser:
+  actAs:
+    Timestampable:
+  columns:
+    country_id:         { type: integer }
+    first_name:         { type: string(255) }
+    last_name:          { type: string(255) }
+    profession:         { type: string(1000) }
+    zip_code:           { type: string(6) }
+    street:             { type: string(1000) }
+    city:               { type: string(255) }
+    is_letter_actu:     { type: boolean }
+    is_letter_action:   { type: boolean }
+    photo_id:           { type: integer }
+  relations:
+    Country:
+      local:            country_id
+      foreignAlias:     Users
+      onDelete:         SET NULL
+    Photo:
+      class:            DmMedia
+      local:            photo_id
+      foreignAlias:     Users
+      onDelete:         RESTRICT
+
+Country:
+  columns:
+    name:               { type: string(255), notnull: true, unique: true }
+
+Petition:
+  actAs:
+    Timestampable:
+    DmTaggable:
+    DmVersionable:
+  columns:
+    title:              { type: string(255), notnull: true, unique: true }
+    text:               { type: clob, extra: markdown }
+    slogan:             { type: string(500), notnull: true }
+    is_active:          { type: boolean, notnull: true, default: false }
+    url_feed_actu:      { type: string(255), notnull: true, extra: link }
+    url_feed_communique: { type: string(255), notnull: true, extra: link }
+  relations:
+    Signatories:
+      class:            DmUser
+      refClass:         Signature
+      local:            petition_id
+      foreign:          dm_user_id
+      foreignAlias:     SignedPetitions
+
+Collecte:
+  actAs:
+    Timestampable:
+    DmVersionable:
+  columns:
+    dm_user_id:         { type: integer, notnull: true }
+    petition_id:        { type: integer, notnull: true }
+    title:              { type: string(255), notnull: true }
+    text:               { type: clob }
+    objectif:           { type: integer, notnull: true, default: 50, unsigned: true }
+    hash_code:          { type: string(8), notnull: true, unique: true }
+  relations:
+    User:
+      class:            DmUser
+      local:            dm_user_id
+      foreignAlias:     Collectes
+      onDelete:         RESTRICT
+    Petition:
+      class:            Petition
+      local:            petition_id
+      foreignAlias:     Collectes
+      onDelete:         RESTRICT
+
+Signature:
+  actAs:
+    Timestampable:
+      updated:
+        disabled: true
+  columns:
+    dm_user_id:         { type: integer, notnull: true }
+    petition_id:        { type: integer, notnull: true }
+    collecte_id:        { type: integer, notnull: false } # venu de telle collecte
+  indexes:
+    user_signed_petition:
+      fields:           [dm_user_id, petition_id]
+      unique:           true
+  relations:
+    User:
+      class:            DmUser
+      local:            dm_user_id
+      onDelete:         CASCADE
+    Petition:
+      class:            Petition
+      local:            petition_id
+      onDelete:         CASCADE
+    Collecte:
+      class:            Collecte
+      local:            collecte_id
+      onDelete:         SET NULL
+
+Action:
+  actAs:
+    Timestampable:
+    DmVersionable:
+  columns:
+    petition_id:        { type: integer, notnull: true }
+    title:              { type: string(255), notnull: true }
+    text:               { type: clob, extra: markdown }
+    begin_at:           { type: timestamp } # echeance du timer
+    objectif:           { type: integer, notnull: true, default: 50, unsigned: true }
+    is_active:          { type: boolean, notnull: true, default: false }
+  indexes:
+    petition_title:
+      fields:           [petition_id, title]
+      type:             unique
+  relations:
+    Petition:
+      class:            Petition
+      local:            petition_id
+      onDelete:         CASCADE
+
+Partenaire:
+  actAs:
+    Timestampable:
+    DmVersionable:
+  columns:
+    title:              { type: string(255), notnull: true, unique: true }
+    url:                { type: string(255), extra: link }
+    image_id:           { type: integer } # prévoir image par défaut
+  relations:
+    Petitions:
+      class:            Petition
+      refClass:         PartenairePetition
+      local:            partenaire_id
+      foreign:          petition_id
+      foreignAlias:     Partenaires
+
+PartenairePetition:
+  columns:
+    petition_id:        { type: integer, primary: true }
+    partenaire_id:      { type: integer, primary: true }
+  relations:
+    Partenaire:
+      class:            Partenaire
+      local:            partenaire_id
+      onDelete:         CASCADE
+    Petition:
+      class:            Petition
+      local:            petition_id
+      onDelete:         CASCADE
+
+Produit:
+  actAs:
+    Timestampable:
+    DmVersionable:
+  columns:
+    title:              { type: string(255), notnull: true, unique: true }
+    url:                { type: string(255), notnull: true, extra: link  }
+    image_id:           { type: integer } # prévoir image par défaut
+    texte:              { type: string(500) }
+  relations:
+    Petitions:
+      class:            Petition
+      refClass:         ProduitPetition
+      local:            produit_id
+      foreign:          petition_id
+      foreignAlias:     Produits
+    Image:
+      class:            DmMedia
+      local:            image_id
+      foreignAlias:     Produits
+      onDelete:         SET NULL
+
+ProduitPetition:
+  columns:
+    petition_id:        { type: integer, primary: true }
+    produit_id:         { type: integer, primary: true }
+  relations:
+    Produit:
+      class:            Produit
+      local:            produit_id
+      onDelete:         CASCADE
+    Petition:
+      class:            Petition
+      local:            petition_id
+      onDelete:         CASCADE
+
+Citation:
+  actAs:
+    Timestampable:
+    DmVersionable:
+  columns:
+    texte:              { type: clob, extra: markdown, notnull: true }
+    source:             { type: clob, extra: markdown, notnull: true }
