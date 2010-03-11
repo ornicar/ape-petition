@@ -13,7 +13,7 @@ generator:
       list:
         display:
           - '=id'
-          - texte
+          - text
           - source
           - created_at
           - updated_at
@@ -26,13 +26,13 @@ generator:
       filter:
         display:
           - id
-          - texte
+          - text
           - source
           - created_at
           - updated_at
       form:
         display:
-          Texte: [texte]
+          Text: [text]
           Source: [source]
         class: CitationAdminForm
         fields: {  }

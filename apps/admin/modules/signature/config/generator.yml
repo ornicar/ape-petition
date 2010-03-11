@@ -15,7 +15,7 @@ generator:
           - '=id'
           - dm_user_id
           - petition_id
-          - collecte_id
+          - collection_id
           - created_at
         sort:
           - created_at
@@ -28,11 +28,11 @@ generator:
           - id
           - dm_user_id
           - petition_id
-          - collecte_id
+          - collection_id
           - created_at
       form:
         display:
-          NONE: [dm_user_id, petition_id, collecte_id]
+          NONE: [dm_user_id, petition_id, collection_id]
         class: SignatureAdminForm
         fields: {  }
       edit: ~

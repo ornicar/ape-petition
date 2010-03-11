@@ -12,10 +12,10 @@ generator:
       fields:
         signatories_list:
           label: Utilisateurs
-        partenaires_list:
-          label: Partenaires
-        produits_list:
-          label: Produits
+        partners_list:
+          label: Partners
+        products_list:
+          label: Products
         tags_list:
           label: Tags
         is_active:
@@ -23,12 +23,11 @@ generator:
       list:
         display:
           - '=title'
-          - collectes_list
           - signature_list
           - action_list
           - signatories_list
-          - partenaires_list
-          - produits_list
+          - partners_list
+          - products_list
           - tags_list
           - text
           - slogan
@@ -58,10 +57,7 @@ generator:
           NONE: [title, is_active]
           Text: [text]
           Utilisateurs: [signatories_list]
-          Partenaires: [partenaires_list]
-          Produits: [produits_list]
           Tags: [tags]
-          Collectes: [collectes_list]
           Signatures: [signature_list]
           Actions: [action_list]
           Others: [slogan, url_feed_actu, url_feed_communique]

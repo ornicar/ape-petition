@@ -6,7 +6,7 @@ DmUser:
     first_name:         { type: string(255) }
     last_name:          { type: string(255) }
     profession:         { type: string(1000) }
-    zip_code:           { type: string(6) }
+    postal_code:        { type: string(6) }
     street:             { type: string(1000) }
     city:               { type: string(255) }
     is_letter_actu:     { type: boolean }
@@ -47,7 +47,9 @@ Petition:
       foreign:          dm_user_id
       foreignAlias:     SignedPetitions
 
-Collecte:
+# A collection is a page where a user promotes
+# a petition and collects signatures for it
+Collection:
   actAs:
     Timestampable:
     DmVersionable:
@@ -56,18 +58,18 @@ Collecte:
     petition_id:        { type: integer, notnull: true }
     title:              { type: string(255), notnull: true }
     text:               { type: clob }
-    objectif:           { type: integer, notnull: true, default: 50, unsigned: true }
+    goal:               { type: integer, notnull: true, default: 50, unsigned: true }
     hash_code:          { type: string(8), notnull: true, unique: true }
   relations:
     User:
       class:            DmUser
       local:            dm_user_id
-      foreignAlias:     Collectes
+      foreignAlias:     Collections
       onDelete:         RESTRICT
     Petition:
       class:            Petition
       local:            petition_id
-      foreignAlias:     Collectes
+      foreignAlias:     Collections
       onDelete:         RESTRICT
 
 Signature:
@@ -78,7 +80,7 @@ Signature:
   columns:
     dm_user_id:         { type: integer, notnull: true }
     petition_id:        { type: integer, notnull: true }
-    collecte_id:        { type: integer, notnull: false } # venu de telle collecte
+    collection_id:      { type: integer, notnull: false } # came from this collection
   indexes:
     user_signed_petition:
       fields:           [dm_user_id, petition_id]
@@ -92,9 +94,9 @@ Signature:
       class:            Petition
       local:            petition_id
       onDelete:         CASCADE
-    Collecte:
-      class:            Collecte
-      local:            collecte_id
+    Collection:
+      class:            Collection
+      local:            collection_id
       onDelete:         SET NULL
 
 Action:
@@ -106,7 +108,7 @@ Action:
     title:              { type: string(255), notnull: true }
     text:               { type: clob, extra: markdown }
     begin_at:           { type: timestamp } # echeance du timer
-    objectif:           { type: integer, notnull: true, default: 50, unsigned: true }
+    goal:               { type: integer, notnull: true, default: 50, unsigned: true }
     is_active:          { type: boolean, notnull: true, default: false }
   indexes:
     petition_title:
@@ -118,7 +120,7 @@ Action:
       local:            petition_id
       onDelete:         CASCADE
 
-Partenaire:
+Partner:
   actAs:
     Timestampable:
     DmVersionable:
@@ -129,26 +131,26 @@ Partenaire:
   relations:
     Petitions:
       class:            Petition
-      refClass:         PartenairePetition
-      local:            partenaire_id
+      refClass:         PartnerPetition
+      local:            partner_id
       foreign:          petition_id
-      foreignAlias:     Partenaires
+      foreignAlias:     Partners
 
-PartenairePetition:
+PartnerPetition:
   columns:
+    partner_id:         { type: integer, primary: true }
     petition_id:        { type: integer, primary: true }
-    partenaire_id:      { type: integer, primary: true }
   relations:
-    Partenaire:
-      class:            Partenaire
-      local:            partenaire_id
+    Partner:
+      class:            Partner
+      local:            partner_id
       onDelete:         CASCADE
     Petition:
       class:            Petition
       local:            petition_id
       onDelete:         CASCADE
 
-Produit:
+Product:
   actAs:
     Timestampable:
     DmVersionable:
@@ -156,28 +158,28 @@ Produit:
     title:              { type: string(255), notnull: true, unique: true }
     url:                { type: string(255), notnull: true, extra: link  }
     image_id:           { type: integer } # prévoir image par défaut
-    texte:              { type: string(500) }
+    text:               { type: string(500) }
   relations:
     Petitions:
       class:            Petition
-      refClass:         ProduitPetition
-      local:            produit_id
+      refClass:         ProductPetition
+      local:            product_id
       foreign:          petition_id
-      foreignAlias:     Produits
+      foreignAlias:     Products
     Image:
       class:            DmMedia
       local:            image_id
-      foreignAlias:     Produits
+      foreignAlias:     Products
       onDelete:         SET NULL
 
-ProduitPetition:
+ProductPetition:
   columns:
     petition_id:        { type: integer, primary: true }
-    produit_id:         { type: integer, primary: true }
+    product_id:         { type: integer, primary: true }
   relations:
-    Produit:
-      class:            Produit
-      local:            produit_id
+    Product:
+      class:            Product
+      local:            product_id
       onDelete:         CASCADE
     Petition:
       class:            Petition
@@ -189,5 +191,5 @@ Citation:
     Timestampable:
     DmVersionable:
   columns:
-    texte:              { type: clob, extra: markdown, notnull: true }
+    text:               { type: clob, extra: markdown, notnull: true }
     source:             { type: clob, extra: markdown, notnull: true }

@@ -23,8 +23,8 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'to_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'with_empty' => false)),
       'version'             => new sfWidgetFormFilterInput(),
       'signatories_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DmUser')),
-      'partenaires_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Partenaire')),
-      'produits_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Produit')),
+      'partners_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Partner')),
+      'products_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Product')),
       'tags_list'           => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DmTag')),
     ));
 
@@ -39,8 +39,8 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'version'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'signatories_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DmUser', 'required' => false)),
-      'partenaires_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Partenaire', 'required' => false)),
-      'produits_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Produit', 'required' => false)),
+      'partners_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Partner', 'required' => false)),
+      'products_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Product', 'required' => false)),
       'tags_list'           => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DmTag', 'required' => false)),
     ));
 
@@ -69,7 +69,7 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
           ->andWhereIn('Signature.dm_user_id', $values);
   }
 
-  public function addPartenairesListColumnQuery(Doctrine_Query $query, $field, $values)
+  public function addPartnersListColumnQuery(Doctrine_Query $query, $field, $values)
   {
     if (!is_array($values))
     {
@@ -81,11 +81,11 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
       return;
     }
 
-    $query->leftJoin('r.PartenairePetition PartenairePetition')
-          ->andWhereIn('PartenairePetition.partenaire_id', $values);
+    $query->leftJoin('r.PartnerPetition PartnerPetition')
+          ->andWhereIn('PartnerPetition.partner_id', $values);
   }
 
-  public function addProduitsListColumnQuery(Doctrine_Query $query, $field, $values)
+  public function addProductsListColumnQuery(Doctrine_Query $query, $field, $values)
   {
     if (!is_array($values))
     {
@@ -97,8 +97,8 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
       return;
     }
 
-    $query->leftJoin('r.ProduitPetition ProduitPetition')
-          ->andWhereIn('ProduitPetition.produit_id', $values);
+    $query->leftJoin('r.ProductPetition ProductPetition')
+          ->andWhereIn('ProductPetition.product_id', $values);
   }
 
   public function addTagsListColumnQuery(Doctrine_Query $query, $field, $values)
@@ -136,8 +136,8 @@ abstract class BasePetitionFormFilter extends BaseFormFilterDoctrine
       'updated_at'          => 'Date',
       'version'             => 'Number',
       'signatories_list'    => 'ManyKey',
-      'partenaires_list'    => 'ManyKey',
-      'produits_list'       => 'ManyKey',
+      'partners_list'       => 'ManyKey',
+      'products_list'       => 'ManyKey',
       'tags_list'           => 'ManyKey',
     );
   }

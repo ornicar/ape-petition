@@ -15,7 +15,7 @@
  * @property string $dimensions
  * @property DmMediaFolder $Folder
  * @property Doctrine_Collection $Users
- * @property Doctrine_Collection $Produits
+ * @property Doctrine_Collection $Products
  * 
  * @method integer             getDmMediaFolderId()    Returns the current record's "dm_media_folder_id" value
  * @method string              getFile()               Returns the current record's "file" value
@@ -27,7 +27,7 @@
  * @method string              getDimensions()         Returns the current record's "dimensions" value
  * @method DmMediaFolder       getFolder()             Returns the current record's "Folder" value
  * @method Doctrine_Collection getUsers()              Returns the current record's "Users" collection
- * @method Doctrine_Collection getProduits()           Returns the current record's "Produits" collection
+ * @method Doctrine_Collection getProducts()           Returns the current record's "Products" collection
  * @method DmMedia             setDmMediaFolderId()    Sets the current record's "dm_media_folder_id" value
  * @method DmMedia             setFile()               Sets the current record's "file" value
  * @method DmMedia             setLegend()             Sets the current record's "legend" value
@@ -38,12 +38,12 @@
  * @method DmMedia             setDimensions()         Sets the current record's "dimensions" value
  * @method DmMedia             setFolder()             Sets the current record's "Folder" value
  * @method DmMedia             setUsers()              Sets the current record's "Users" collection
- * @method DmMedia             setProduits()           Sets the current record's "Produits" collection
+ * @method DmMedia             setProducts()           Sets the current record's "Products" collection
  * 
  * @package    ape-petition
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 7200 2010-02-21 09:37:37Z beberlei $
+ * @version    SVN: $Id: Builder.php 7294 2010-03-02 17:59:20Z jwage $
  */
 abstract class BaseDmMedia extends myDoctrineRecord
 {
@@ -112,7 +112,7 @@ abstract class BaseDmMedia extends myDoctrineRecord
              'local' => 'id',
              'foreign' => 'photo_id'));
 
-        $this->hasMany('Produit as Produits', array(
+        $this->hasMany('Product as Products', array(
              'local' => 'id',
              'foreign' => 'image_id'));
 

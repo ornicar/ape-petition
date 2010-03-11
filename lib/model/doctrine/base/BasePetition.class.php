@@ -12,13 +12,13 @@
  * @property string $url_feed_actu
  * @property string $url_feed_communique
  * @property Doctrine_Collection $Signatories
- * @property Doctrine_Collection $Collectes
+ * @property Doctrine_Collection $Collections
  * @property Doctrine_Collection $Signature
  * @property Doctrine_Collection $Action
- * @property Doctrine_Collection $Partenaires
- * @property Doctrine_Collection $PartenairePetition
- * @property Doctrine_Collection $Produits
- * @property Doctrine_Collection $ProduitPetition
+ * @property Doctrine_Collection $Partners
+ * @property Doctrine_Collection $PartnerPetition
+ * @property Doctrine_Collection $Products
+ * @property Doctrine_Collection $ProductPetition
  * 
  * @method string              getTitle()               Returns the current record's "title" value
  * @method clob                getText()                Returns the current record's "text" value
@@ -27,13 +27,13 @@
  * @method string              getUrlFeedActu()         Returns the current record's "url_feed_actu" value
  * @method string              getUrlFeedCommunique()   Returns the current record's "url_feed_communique" value
  * @method Doctrine_Collection getSignatories()         Returns the current record's "Signatories" collection
- * @method Doctrine_Collection getCollectes()           Returns the current record's "Collectes" collection
+ * @method Doctrine_Collection getCollections()         Returns the current record's "Collections" collection
  * @method Doctrine_Collection getSignature()           Returns the current record's "Signature" collection
  * @method Doctrine_Collection getAction()              Returns the current record's "Action" collection
- * @method Doctrine_Collection getPartenaires()         Returns the current record's "Partenaires" collection
- * @method Doctrine_Collection getPartenairePetition()  Returns the current record's "PartenairePetition" collection
- * @method Doctrine_Collection getProduits()            Returns the current record's "Produits" collection
- * @method Doctrine_Collection getProduitPetition()     Returns the current record's "ProduitPetition" collection
+ * @method Doctrine_Collection getPartners()            Returns the current record's "Partners" collection
+ * @method Doctrine_Collection getPartnerPetition()     Returns the current record's "PartnerPetition" collection
+ * @method Doctrine_Collection getProducts()            Returns the current record's "Products" collection
+ * @method Doctrine_Collection getProductPetition()     Returns the current record's "ProductPetition" collection
  * @method Petition            setTitle()               Sets the current record's "title" value
  * @method Petition            setText()                Sets the current record's "text" value
  * @method Petition            setSlogan()              Sets the current record's "slogan" value
@@ -41,18 +41,18 @@
  * @method Petition            setUrlFeedActu()         Sets the current record's "url_feed_actu" value
  * @method Petition            setUrlFeedCommunique()   Sets the current record's "url_feed_communique" value
  * @method Petition            setSignatories()         Sets the current record's "Signatories" collection
- * @method Petition            setCollectes()           Sets the current record's "Collectes" collection
+ * @method Petition            setCollections()         Sets the current record's "Collections" collection
  * @method Petition            setSignature()           Sets the current record's "Signature" collection
  * @method Petition            setAction()              Sets the current record's "Action" collection
- * @method Petition            setPartenaires()         Sets the current record's "Partenaires" collection
- * @method Petition            setPartenairePetition()  Sets the current record's "PartenairePetition" collection
- * @method Petition            setProduits()            Sets the current record's "Produits" collection
- * @method Petition            setProduitPetition()     Sets the current record's "ProduitPetition" collection
+ * @method Petition            setPartners()            Sets the current record's "Partners" collection
+ * @method Petition            setPartnerPetition()     Sets the current record's "PartnerPetition" collection
+ * @method Petition            setProducts()            Sets the current record's "Products" collection
+ * @method Petition            setProductPetition()     Sets the current record's "ProductPetition" collection
  * 
  * @package    ape-petition
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 7200 2010-02-21 09:37:37Z beberlei $
+ * @version    SVN: $Id: Builder.php 7294 2010-03-02 17:59:20Z jwage $
  */
 abstract class BasePetition extends myDoctrineRecord
 {
@@ -101,7 +101,7 @@ abstract class BasePetition extends myDoctrineRecord
              'local' => 'petition_id',
              'foreign' => 'dm_user_id'));
 
-        $this->hasMany('Collecte as Collectes', array(
+        $this->hasMany('Collection as Collections', array(
              'local' => 'id',
              'foreign' => 'petition_id'));
 
@@ -113,21 +113,21 @@ abstract class BasePetition extends myDoctrineRecord
              'local' => 'id',
              'foreign' => 'petition_id'));
 
-        $this->hasMany('Partenaire as Partenaires', array(
-             'refClass' => 'PartenairePetition',
+        $this->hasMany('Partner as Partners', array(
+             'refClass' => 'PartnerPetition',
              'local' => 'petition_id',
-             'foreign' => 'partenaire_id'));
+             'foreign' => 'partner_id'));
 
-        $this->hasMany('PartenairePetition', array(
+        $this->hasMany('PartnerPetition', array(
              'local' => 'id',
              'foreign' => 'petition_id'));
 
-        $this->hasMany('Produit as Produits', array(
-             'refClass' => 'ProduitPetition',
+        $this->hasMany('Product as Products', array(
+             'refClass' => 'ProductPetition',
              'local' => 'petition_id',
-             'foreign' => 'produit_id'));
+             'foreign' => 'product_id'));
 
-        $this->hasMany('ProduitPetition', array(
+        $this->hasMany('ProductPetition', array(
              'local' => 'id',
              'foreign' => 'petition_id'));
 

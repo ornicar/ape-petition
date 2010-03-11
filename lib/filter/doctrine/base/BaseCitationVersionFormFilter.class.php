@@ -13,14 +13,14 @@ abstract class BaseCitationVersionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'texte'      => new sfWidgetFormFilterInput(),
+      'text'       => new sfWidgetFormFilterInput(),
       'source'     => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'to_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'with_empty' => false)),
       'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'to_date' => new sfWidgetFormInputText(array(), array("class" => "datepicker_me")), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'texte'      => new sfValidatorPass(array('required' => false)),
+      'text'       => new sfValidatorPass(array('required' => false)),
       'source'     => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
@@ -44,7 +44,7 @@ abstract class BaseCitationVersionFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'         => 'Number',
-      'texte'      => 'Text',
+      'text'       => 'Text',
       'source'     => 'Text',
       'created_at' => 'Date',
       'updated_at' => 'Date',

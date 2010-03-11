@@ -17,7 +17,7 @@
  * @property string $first_name
  * @property string $last_name
  * @property string $profession
- * @property string $zip_code
+ * @property string $postal_code
  * @property string $street
  * @property string $city
  * @property boolean $is_letter_actu
@@ -32,7 +32,7 @@
  * @property Doctrine_Collection $DmUserGroup
  * @property DmRememberKey $RememberKeys
  * @property Doctrine_Collection $SignedPetitions
- * @property Doctrine_Collection $Collectes
+ * @property Doctrine_Collection $Collections
  * @property Doctrine_Collection $Signature
  * 
  * @method string              getUsername()         Returns the current record's "username" value
@@ -47,7 +47,7 @@
  * @method string              getFirstName()        Returns the current record's "first_name" value
  * @method string              getLastName()         Returns the current record's "last_name" value
  * @method string              getProfession()       Returns the current record's "profession" value
- * @method string              getZipCode()          Returns the current record's "zip_code" value
+ * @method string              getPostalCode()       Returns the current record's "postal_code" value
  * @method string              getStreet()           Returns the current record's "street" value
  * @method string              getCity()             Returns the current record's "city" value
  * @method boolean             getIsLetterActu()     Returns the current record's "is_letter_actu" value
@@ -62,7 +62,7 @@
  * @method Doctrine_Collection getDmUserGroup()      Returns the current record's "DmUserGroup" collection
  * @method DmRememberKey       getRememberKeys()     Returns the current record's "RememberKeys" value
  * @method Doctrine_Collection getSignedPetitions()  Returns the current record's "SignedPetitions" collection
- * @method Doctrine_Collection getCollectes()        Returns the current record's "Collectes" collection
+ * @method Doctrine_Collection getCollections()      Returns the current record's "Collections" collection
  * @method Doctrine_Collection getSignature()        Returns the current record's "Signature" collection
  * @method DmUser              setUsername()         Sets the current record's "username" value
  * @method DmUser              setEmail()            Sets the current record's "email" value
@@ -76,7 +76,7 @@
  * @method DmUser              setFirstName()        Sets the current record's "first_name" value
  * @method DmUser              setLastName()         Sets the current record's "last_name" value
  * @method DmUser              setProfession()       Sets the current record's "profession" value
- * @method DmUser              setZipCode()          Sets the current record's "zip_code" value
+ * @method DmUser              setPostalCode()       Sets the current record's "postal_code" value
  * @method DmUser              setStreet()           Sets the current record's "street" value
  * @method DmUser              setCity()             Sets the current record's "city" value
  * @method DmUser              setIsLetterActu()     Sets the current record's "is_letter_actu" value
@@ -91,13 +91,13 @@
  * @method DmUser              setDmUserGroup()      Sets the current record's "DmUserGroup" collection
  * @method DmUser              setRememberKeys()     Sets the current record's "RememberKeys" value
  * @method DmUser              setSignedPetitions()  Sets the current record's "SignedPetitions" collection
- * @method DmUser              setCollectes()        Sets the current record's "Collectes" collection
+ * @method DmUser              setCollections()      Sets the current record's "Collections" collection
  * @method DmUser              setSignature()        Sets the current record's "Signature" collection
  * 
  * @package    ape-petition
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 7200 2010-02-21 09:37:37Z beberlei $
+ * @version    SVN: $Id: Builder.php 7294 2010-03-02 17:59:20Z jwage $
  */
 abstract class BaseDmUser extends myDoctrineRecord
 {
@@ -156,7 +156,7 @@ abstract class BaseDmUser extends myDoctrineRecord
              'type' => 'string',
              'length' => '1000',
              ));
-        $this->hasColumn('zip_code', 'string', 6, array(
+        $this->hasColumn('postal_code', 'string', 6, array(
              'type' => 'string',
              'length' => '6',
              ));
@@ -231,7 +231,7 @@ abstract class BaseDmUser extends myDoctrineRecord
              'local' => 'dm_user_id',
              'foreign' => 'petition_id'));
 
-        $this->hasMany('Collecte as Collectes', array(
+        $this->hasMany('Collection as Collections', array(
              'local' => 'id',
              'foreign' => 'dm_user_id'));
 

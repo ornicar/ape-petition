@@ -16,7 +16,7 @@ abstract class BaseCitationVersionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'texte'      => new sfWidgetFormTextarea(),
+      'text'       => new sfWidgetFormTextarea(),
       'source'     => new sfWidgetFormTextarea(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
@@ -25,7 +25,7 @@ abstract class BaseCitationVersionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorDoctrineChoice(array('model' => $this->getModelName(), 'column' => 'id', 'required' => false)),
-      'texte'      => new sfValidatorString(),
+      'text'       => new sfValidatorString(),
       'source'     => new sfValidatorString(),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),

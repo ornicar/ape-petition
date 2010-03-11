@@ -18,7 +18,7 @@ generator:
           - petition_id
           - text
           - begin_at
-          - objectif
+          - goal
           - is_active
           - created_at
           - updated_at
@@ -35,14 +35,14 @@ generator:
           - petition_id
           - text
           - begin_at
-          - objectif
+          - goal
           - created_at
           - updated_at
       form:
         display:
           NONE: [title, is_active, petition_id]
           Text: [text]
-          Others: [begin_at, objectif]
+          Others: [begin_at, goal]
         class: ActionAdminForm
         fields: {  }
       edit: ~

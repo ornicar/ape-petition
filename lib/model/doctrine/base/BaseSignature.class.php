@@ -7,28 +7,28 @@
  * 
  * @property integer $dm_user_id
  * @property integer $petition_id
- * @property integer $collecte_id
+ * @property integer $collection_id
  * @property DmUser $User
  * @property Petition $Petition
- * @property Collecte $Collecte
+ * @property Collection $Collection
  * 
- * @method integer   getDmUserId()    Returns the current record's "dm_user_id" value
- * @method integer   getPetitionId()  Returns the current record's "petition_id" value
- * @method integer   getCollecteId()  Returns the current record's "collecte_id" value
- * @method DmUser    getUser()        Returns the current record's "User" value
- * @method Petition  getPetition()    Returns the current record's "Petition" value
- * @method Collecte  getCollecte()    Returns the current record's "Collecte" value
- * @method Signature setDmUserId()    Sets the current record's "dm_user_id" value
- * @method Signature setPetitionId()  Sets the current record's "petition_id" value
- * @method Signature setCollecteId()  Sets the current record's "collecte_id" value
- * @method Signature setUser()        Sets the current record's "User" value
- * @method Signature setPetition()    Sets the current record's "Petition" value
- * @method Signature setCollecte()    Sets the current record's "Collecte" value
+ * @method integer    getDmUserId()      Returns the current record's "dm_user_id" value
+ * @method integer    getPetitionId()    Returns the current record's "petition_id" value
+ * @method integer    getCollectionId()  Returns the current record's "collection_id" value
+ * @method DmUser     getUser()          Returns the current record's "User" value
+ * @method Petition   getPetition()      Returns the current record's "Petition" value
+ * @method Collection getCollection()    Returns the current record's "Collection" value
+ * @method Signature  setDmUserId()      Sets the current record's "dm_user_id" value
+ * @method Signature  setPetitionId()    Sets the current record's "petition_id" value
+ * @method Signature  setCollectionId()  Sets the current record's "collection_id" value
+ * @method Signature  setUser()          Sets the current record's "User" value
+ * @method Signature  setPetition()      Sets the current record's "Petition" value
+ * @method Signature  setCollection()    Sets the current record's "Collection" value
  * 
  * @package    ape-petition
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 7200 2010-02-21 09:37:37Z beberlei $
+ * @version    SVN: $Id: Builder.php 7294 2010-03-02 17:59:20Z jwage $
  */
 abstract class BaseSignature extends myDoctrineRecord
 {
@@ -43,7 +43,7 @@ abstract class BaseSignature extends myDoctrineRecord
              'type' => 'integer',
              'notnull' => true,
              ));
-        $this->hasColumn('collecte_id', 'integer', null, array(
+        $this->hasColumn('collection_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => false,
              ));
@@ -72,8 +72,8 @@ abstract class BaseSignature extends myDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasOne('Collecte', array(
-             'local' => 'collecte_id',
+        $this->hasOne('Collection', array(
+             'local' => 'collection_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 

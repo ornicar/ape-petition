@@ -9,7 +9,7 @@
  * @property string $title
  * @property clob $text
  * @property timestamp $begin_at
- * @property integer $objectif
+ * @property integer $goal
  * @property boolean $is_active
  * @property Petition $Petition
  * 
@@ -17,21 +17,21 @@
  * @method string    getTitle()       Returns the current record's "title" value
  * @method clob      getText()        Returns the current record's "text" value
  * @method timestamp getBeginAt()     Returns the current record's "begin_at" value
- * @method integer   getObjectif()    Returns the current record's "objectif" value
+ * @method integer   getGoal()        Returns the current record's "goal" value
  * @method boolean   getIsActive()    Returns the current record's "is_active" value
  * @method Petition  getPetition()    Returns the current record's "Petition" value
  * @method Action    setPetitionId()  Sets the current record's "petition_id" value
  * @method Action    setTitle()       Sets the current record's "title" value
  * @method Action    setText()        Sets the current record's "text" value
  * @method Action    setBeginAt()     Sets the current record's "begin_at" value
- * @method Action    setObjectif()    Sets the current record's "objectif" value
+ * @method Action    setGoal()        Sets the current record's "goal" value
  * @method Action    setIsActive()    Sets the current record's "is_active" value
  * @method Action    setPetition()    Sets the current record's "Petition" value
  * 
  * @package    ape-petition
  * @subpackage model
  * @author     Your name here
- * @version    SVN: $Id: Builder.php 7200 2010-02-21 09:37:37Z beberlei $
+ * @version    SVN: $Id: Builder.php 7294 2010-03-02 17:59:20Z jwage $
  */
 abstract class BaseAction extends myDoctrineRecord
 {
@@ -54,7 +54,7 @@ abstract class BaseAction extends myDoctrineRecord
         $this->hasColumn('begin_at', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
-        $this->hasColumn('objectif', 'integer', null, array(
+        $this->hasColumn('goal', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 50,

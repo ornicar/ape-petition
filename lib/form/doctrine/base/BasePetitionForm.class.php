@@ -26,8 +26,8 @@ abstract class BasePetitionForm extends BaseFormDoctrine
       'updated_at'          => new sfWidgetFormDateTime(),
       'version'             => new sfWidgetFormInputText(),
         'signatories_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DmUser', 'expanded' => true)),
-        'partenaires_list'    => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Partenaire', 'expanded' => true)),
-        'produits_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Produit', 'expanded' => true)),
+        'partners_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Partner', 'expanded' => true)),
+        'products_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Product', 'expanded' => true)),
         'tags_list'           => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'DmTag', 'expanded' => true)),
     ));
 
@@ -43,8 +43,8 @@ abstract class BasePetitionForm extends BaseFormDoctrine
       'updated_at'          => new sfValidatorDateTime(),
       'version'             => new sfValidatorInteger(array('required' => false)),
         'signatories_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DmUser', 'required' => false)),
-        'partenaires_list'    => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Partenaire', 'required' => false)),
-        'produits_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Produit', 'required' => false)),
+        'partners_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Partner', 'required' => false)),
+        'products_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Product', 'required' => false)),
         'tags_list'           => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'DmTag', 'required' => false)),
     ));
 
@@ -96,14 +96,14 @@ abstract class BasePetitionForm extends BaseFormDoctrine
       $this->setDefault('signatories_list', $this->object->Signatories->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['partenaires_list']))
+    if (isset($this->widgetSchema['partners_list']))
     {
-      $this->setDefault('partenaires_list', $this->object->Partenaires->getPrimaryKeys());
+      $this->setDefault('partners_list', $this->object->Partners->getPrimaryKeys());
     }
 
-    if (isset($this->widgetSchema['produits_list']))
+    if (isset($this->widgetSchema['products_list']))
     {
-      $this->setDefault('produits_list', $this->object->Produits->getPrimaryKeys());
+      $this->setDefault('products_list', $this->object->Products->getPrimaryKeys());
     }
 
     if (isset($this->widgetSchema['tags_list']))
@@ -116,8 +116,8 @@ abstract class BasePetitionForm extends BaseFormDoctrine
   protected function doSave($con = null)
   {
     $this->saveSignatoriesList($con);
-    $this->savePartenairesList($con);
-    $this->saveProduitsList($con);
+    $this->savePartnersList($con);
+    $this->saveProductsList($con);
     $this->saveTagsList($con);
 
     parent::doSave($con);
@@ -161,14 +161,14 @@ abstract class BasePetitionForm extends BaseFormDoctrine
     }
   }
 
-  public function savePartenairesList($con = null)
+  public function savePartnersList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['partenaires_list']))
+    if (!isset($this->widgetSchema['partners_list']))
     {
       // somebody has unset this widget
       return;
@@ -179,8 +179,8 @@ abstract class BasePetitionForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->Partenaires->getPrimaryKeys();
-    $values = $this->getValue('partenaires_list');
+    $existing = $this->object->Partners->getPrimaryKeys();
+    $values = $this->getValue('partners_list');
     if (!is_array($values))
     {
       $values = array();
@@ -189,24 +189,24 @@ abstract class BasePetitionForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('Partenaires', array_values($unlink));
+      $this->object->unlink('Partners', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('Partenaires', array_values($link));
+      $this->object->link('Partners', array_values($link));
     }
   }
 
-  public function saveProduitsList($con = null)
+  public function saveProductsList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['produits_list']))
+    if (!isset($this->widgetSchema['products_list']))
     {
       // somebody has unset this widget
       return;
@@ -217,8 +217,8 @@ abstract class BasePetitionForm extends BaseFormDoctrine
       $con = $this->getConnection();
     }
 
-    $existing = $this->object->Produits->getPrimaryKeys();
-    $values = $this->getValue('produits_list');
+    $existing = $this->object->Products->getPrimaryKeys();
+    $values = $this->getValue('products_list');
     if (!is_array($values))
     {
       $values = array();
@@ -227,13 +227,13 @@ abstract class BasePetitionForm extends BaseFormDoctrine
     $unlink = array_diff($existing, $values);
     if (count($unlink))
     {
-      $this->object->unlink('Produits', array_values($unlink));
+      $this->object->unlink('Products', array_values($unlink));
     }
 
     $link = array_diff($values, $existing);
     if (count($link))
     {
-      $this->object->link('Produits', array_values($link));
+      $this->object->link('Products', array_values($link));
     }
   }
 
