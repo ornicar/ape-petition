@@ -1,7 +1,9 @@
 config/databases.yml
+config/require_diem.php
 cache/*
 log/*
 data/*
 public_html/cache/*
+public_html/.htaccess
 
 nbproject
