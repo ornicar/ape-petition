@@ -1,6 +1,6 @@
 <?php
 
-require_once '/home/thib/data/workspace/diem/dmCorePlugin/lib/core/dm.php';
+require_once dirname(__FILE__).'/require_diem.php';
 dm::start();
 
 class ProjectConfiguration extends dmProjectConfiguration
@@ -16,5 +16,4 @@ class ProjectConfiguration extends dmProjectConfiguration
 
     $this->setWebDir(sfConfig::get('sf_root_dir').'/public_html');
   }
-  
 }
