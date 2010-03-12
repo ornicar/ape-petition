@@ -12,4 +12,16 @@
  */
 class Petition extends BasePetition
 {
+
+  public function getNextAction()
+  {
+    return dmDb::query('Action a')
+    ->whereIsActive()
+    ->andWhere('a.petition_id = ?', $this->id)
+    ->andWhere('a.begin_at IS NOT NULL')
+    ->andWhere('a.begin_at > ?', date('Y-m-d H:i:s', time()))
+    ->orderBy('a.begin_at ASC')
+    ->fetchOne();
+  }
+
 }

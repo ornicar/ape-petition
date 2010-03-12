@@ -12,4 +12,10 @@
  */
 class Action extends BaseAction
 {
+
+  public function getCounter()
+  {
+    return strtotime($this->beginAt) - time();
+  }
+
 }

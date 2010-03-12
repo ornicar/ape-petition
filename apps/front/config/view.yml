@@ -4,11 +4,14 @@ default:
     content-type: text/html
 
   stylesheets:
+    - countdown
     - layout
     - main
+    - text
     - markdown
 
   javascripts:
+    - countdown/jquery.countdown.min
     - front
 
   has_layout:     true

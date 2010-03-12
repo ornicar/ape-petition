@@ -11,9 +11,11 @@ Content:
 
     petition:
       name:           Pétition
+      page:           true
       components:
         list:
-        show:
+        showTitle:
+        showContent:
 
     action:
 

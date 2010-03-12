@@ -4,11 +4,11 @@
 }
 
 .dm_layout_top {
-  background: #aaa;
+  background: #F4F4F4;
 }
 
 .dm_content {
-  width: 600px;
+  width: 750px;
   float: left;
 }
 
@@ -20,8 +20,9 @@
 .dm_layout_right {
   width: 250px;
   float: left;
+  background: #F4F4F4;
 }
 
 .dm_layout_bottom {
-  background: #aaa;
+  background: #F4F4F4;
 }

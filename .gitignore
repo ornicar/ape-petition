@@ -7,6 +7,8 @@ public_html/cache/*
 public_html/.htaccess
 public_html/dm*Plugin
 public_html/sf*
+public_html/uploads/.thumbs
+public_html/uploads/*/.thumbs
 lib/*/doctrine/base
 lib/*/doctrine/dm*
 
