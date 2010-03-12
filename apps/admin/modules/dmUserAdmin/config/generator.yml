@@ -25,6 +25,7 @@ generator:
           - =email
           - is_active
           - is_super_admin
+          - is_letter_action
           - last_login
           - created_at
           - updated_at

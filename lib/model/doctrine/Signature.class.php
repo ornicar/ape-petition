@@ -12,4 +12,12 @@
  */
 class Signature extends BaseSignature
 {
+
+  public function postInsert($event)
+  {
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'signature.created'));
+
+    return parent::postInsert($event);
+  }
+
 }

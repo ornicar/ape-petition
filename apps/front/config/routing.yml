@@ -1,0 +1,3 @@
+api_action:
+  url:          /api/:action/*
+  params:       { module: api }

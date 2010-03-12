@@ -5,5 +5,4 @@
 class mainActions extends myFrontModuleActions
 {
 
-
 }
