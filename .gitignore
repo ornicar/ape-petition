@@ -11,6 +11,6 @@ public_html/sf*
 public_html/uploads/.thumbs
 public_html/uploads/*/.thumbs
 lib/*/doctrine/base
-lib/*/doctrine/dm*
+lib/*/doctrine/dm*Plugin/base
 
 nbproject
