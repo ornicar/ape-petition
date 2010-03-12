@@ -6,9 +6,19 @@
 class petitionActions extends myFrontModuleActions
 {
 
-  public function executeShowContentWidget(dmWebRequest $request)
+  public function executeShowPage(dmWebRequest $request)
   {
-    $form = new SignupPetitionForm($this->getPage()->getRecord());
+    $petition = $this->getPage()->getRecord();
+    
+    /*
+     * Remember the last petition viewed
+     */
+    $this->getUser()->setLastPetition($petition);
+
+    /*
+     * Create and handle the signup form
+     */
+    $form = new SignupPetitionForm($petition);
     
     if($request->isMethod('post') && $request->hasParameter($form->getName()))
     {

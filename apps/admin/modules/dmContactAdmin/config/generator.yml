@@ -1,0 +1,15 @@
+generator:
+  param:
+    config:
+      list:
+        display:
+          - '=name'
+          - email
+          - body
+          - petition_id
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [name, email, petition_id]
+          Body: [body]

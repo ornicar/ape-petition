@@ -205,3 +205,13 @@ Citation:
     text:               { type: clob, extra: markdown, notnull: true }
     source:             { type: clob, extra: markdown, notnull: true }
     is_active:          { type: boolean, notnull: true, default: false }
+
+DmContact:
+  columns:
+    petition_id:        { type: integer }
+  relations:
+    Petition:
+      class:            Petition
+      local:            petition_id
+      onDelete:         SET NULL
+      foreignAlias:     Contacts

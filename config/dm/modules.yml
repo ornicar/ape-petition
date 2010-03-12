@@ -7,6 +7,7 @@ Content:
         header:
         footer:
         nextAction:
+        sitemap:
 
   Petition:
 
@@ -41,4 +42,9 @@ Content:
 
     citation:
       components:
-        list:         
+        list:
+
+  Tag:
+
+    dmTag:
+      page:           false

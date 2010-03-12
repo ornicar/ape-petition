@@ -5,6 +5,8 @@ dm::start();
 
 class ProjectConfiguration extends dmProjectConfiguration
 {
+  protected
+  $user;
 
   public function setup()
   {
@@ -21,8 +23,27 @@ class ProjectConfiguration extends dmProjectConfiguration
     $this->dispatcher->connect('dm.context.loaded', array($this, 'listenToContextLoadedEvent'));
   }
 
-  public function listenToContextLoadedEvent(sfEvent $e)
+  public function listenToContextLoadedEvent(sfEvent $event)
   {
-    $e->getSubject()->get('email_sender')->connect();
+    $this->user = $event->getSubject()->getUser();
+    
+    $event->getSubject()->get('email_sender')->connect();
+
+    $this->dispatcher->connect('form.post_configure', array($this, 'listenToFormPostConfigureEvent'));
+  }
+
+  public function listenToFormPostConfigureEvent(sfEvent $event)
+  {
+    $form = $event->getSubject();
+
+    if($form instanceof DmContactForm)
+    {
+      $form->changeToHidden('petition_id');
+      
+      if($petition = $this->user->getLastPetition())
+      {
+        $form->setDefault('petition_id', $petition->id);
+      }
+    }
   }
 }

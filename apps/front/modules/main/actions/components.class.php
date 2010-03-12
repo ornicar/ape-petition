@@ -4,6 +4,7 @@
  * 
  * No redirection nor database manipulation ( insert, update, delete ) here
  * 
+ * 
  */
 class mainComponents extends myFrontModuleComponents
 {
@@ -21,10 +22,13 @@ class mainComponents extends myFrontModuleComponents
   public function executeNextAction()
   {
     $this->nbContacts = dmDb::table('DmUser')->getNbContacts();
-
     $this->objectif = dmConfig::get('objectif_principal');
-
     $this->action = dmDb::table('Action')->getNext();
+  }
+
+  public function executeSitemap()
+  {
+    $this->sitemap = $this->getService('menu', 'dmSitemapMenu')->build();
   }
 
 
