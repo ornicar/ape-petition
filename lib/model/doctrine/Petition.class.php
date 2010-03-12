@@ -24,4 +24,72 @@ class Petition extends BasePetition
     ->fetchOne();
   }
 
+  public function getNbSignatures()
+  {
+    return dmDb::query('Signature s')
+    ->where('s.petition_id = ?', $this->id)
+    ->count();
+  }
+
+  public function getActiveProducts()
+  {
+    return $this->getActiveRelatedRecord('Products');
+  }
+
+  public function getActivePartners()
+  {
+    return $this->getActiveRelatedRecord('Partners');
+  }
+
+  protected function getActiveRelatedRecord($relationAlias)
+  {
+    $records = $this->get($relationAlias)->getData();
+
+    foreach($records as $index => $record)
+    {
+      if(!$record->isActive)
+      {
+        unset($records[$index]);
+      }
+    }
+
+    return $records;
+  }
+
+  public function getActuFeedItems()
+  {
+    return $this->getFeedItems($this->actu_feed_url);
+  }
+
+  public function getCommuniqueFeedItems()
+  {
+    return $this->getFeedItems($this->communique_feed_url);
+  }
+
+  protected function getFeedItems($url)
+  {
+    if(!$url || !$this->getServiceContainer())
+    {
+      return array();
+    }
+
+    $cache = $this->getService('cache_manager')->getCache('petition');
+
+    if(!$items = $cache->get($url))
+    {
+      $browser = $this->getService('web_browser');
+
+      if($browser->get($url)->responseIsError())
+      {
+        throw new dmException(sprintf('The given URL (%s) returns an error (%s: %s)', $url, $browser->getResponseCode(), $browser->getResponseMessage()));
+      }
+
+      $items = sfFeedPeer::createFromXml($browser->getResponseText(), $url)->getItems();
+
+      $cache->set($url, $items);
+    }
+
+    return $items;
+  }
+
 }

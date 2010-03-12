@@ -37,8 +37,12 @@ Petition:
     text:               { type: clob, extra: markdown }
     slogan:             { type: string(500), notnull: true }
     is_active:          { type: boolean, notnull: true, default: false }
-    url_feed_actu:      { type: string(255), notnull: true, extra: link }
-    url_feed_communique: { type: string(255), notnull: true, extra: link }
+    actu_page_url:      { type: string(255), notnull: true, extra: link }
+    actu_feed_url:      { type: string(255), notnull: true, extra: link }
+    facebook_page_url:  { type: string(255), notnull: true, default: "http://www.facebook.com/association.agirpourlenvironnement", extra: link }
+    twitter_page_url:   { type: string(255), notnull: true, default: "http://twitter.com/APEnvironnement", extra: link }
+    communique_page_url: { type: string(255), notnull: false, extra: link }
+    communique_feed_url: { type: string(255), notnull: false, extra: link }
   relations:
     Signatories:
       class:            DmUser
@@ -128,6 +132,7 @@ Partner:
     title:              { type: string(255), notnull: true, unique: true }
     url:                { type: string(255), extra: link }
     image_id:           { type: integer } # prévoir image par défaut
+    is_active:          { type: boolean, notnull: true, default: false }
   relations:
     Petitions:
       class:            Petition
@@ -135,6 +140,11 @@ Partner:
       local:            partner_id
       foreign:          petition_id
       foreignAlias:     Partners
+    Image:
+      class:            DmMedia
+      local:            image_id
+      foreignAlias:     Partners
+      onDelete:         RESTRICT
 
 PartnerPetition:
   columns:
@@ -159,6 +169,7 @@ Product:
     url:                { type: string(255), notnull: true, extra: link  }
     image_id:           { type: integer } # prévoir image par défaut
     text:               { type: string(500) }
+    is_active:          { type: boolean, notnull: true, default: false }
   relations:
     Petitions:
       class:            Petition
@@ -170,7 +181,7 @@ Product:
       class:            DmMedia
       local:            image_id
       foreignAlias:     Products
-      onDelete:         SET NULL
+      onDelete:         RESTRICT
 
 ProductPetition:
   columns:
@@ -193,3 +204,4 @@ Citation:
   columns:
     text:               { type: clob, extra: markdown, notnull: true }
     source:             { type: clob, extra: markdown, notnull: true }
+    is_active:          { type: boolean, notnull: true, default: false }

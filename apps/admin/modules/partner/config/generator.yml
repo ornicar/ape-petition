@@ -12,12 +12,15 @@ generator:
       fields:
         petitions_list:
           label: Pétitions
+        is_active:
+          label: Active
       list:
         display:
           - '=title'
+          - image_id
           - petitions_list
           - url
-          - image_id
+          - is_active
           - created_at
           - updated_at
         sort:
@@ -29,15 +32,17 @@ generator:
       filter:
         display:
           - title
+          - is_active
           - url
           - image_id
           - created_at
           - updated_at
       form:
         display:
-          NONE: [title]
+          NONE: [title, is_active]
+          Image: [image_id_form, image_id_view]
           Pétitions: [petitions_list]
-          Others: [url, image_id]
+          Others: [url]
         class: PartnerAdminForm
         fields:
           url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }

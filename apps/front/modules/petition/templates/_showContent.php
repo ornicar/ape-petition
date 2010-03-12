@@ -1,28 +1,36 @@
-<?php // Vars: $petition
+<?php
 
-if($action)
-{
-  echo _tag('div.objectif',
-    _tag('strong', 'OBJECTIF').'<br />'.
-    'Rassembler '.$action->goal.' signataires avant la prochaine action'
-  );
+/*
+ * Prochaine action
+ */
+include_partial('petition/_next_action', array('petition' => $petition));
 
-  echo _tag('div.action',
-    _tag('strong', 'ATTENTION').'<br />'.
-    'Diffusion de notre prochain action dans seulement'.'<br />'.
-    _tag('div.jquery_countdown', $action->counter)
-  );
-}
+/*
+ * Titre et description de la pétition
+ */
+include_partial('petition/_description', array('petition' => $petition));
 
-echo _tag('div.content',
-  _tag('h1', $petition->title).
-  markdown($petition->text)
-);
+/*
+ * Formulaire de signature de la pétition
+ */
+include_partial('petition/_signup_form', array('form' => $signupForm));
 
-echo _tag('div.form',
-  $signupForm->open().
-  $signupForm['email']->field()->error().
-  $signupForm->renderHiddenFields().
-  $signupForm->submit('Devenir signataire').
-  $signupForm->close()
-);
+/*
+ * Actualités
+ */
+include_partial('petition/_actualites', array('petition' => $petition));
+
+/*
+ * Communiqués
+ */
+include_partial('petition/_communiques', array('petition' => $petition));
+
+/*
+ * Boutique
+ */
+include_partial('petition/_products', array('petition' => $petition));
+
+/*
+ * Partenaires
+ */
+include_partial('petition/_partners', array('petition' => $petition));

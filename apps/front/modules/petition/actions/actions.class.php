@@ -19,6 +19,7 @@ class petitionActions extends myFrontModuleActions
         $this->redirectBack();
       }
     }
+    
     $this->forms['signUpPetition'] = $form;
   }
 }

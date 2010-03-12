@@ -33,6 +33,8 @@ all:
     # Enable the database manager
     use_database:           true
 
+    standard_helpers:       [ Text, Date ]
+
   .actions:
   
     secure_module:          dmUser

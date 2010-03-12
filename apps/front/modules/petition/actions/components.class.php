@@ -18,10 +18,12 @@ class petitionComponents extends myFrontModuleComponents
 
   public function executeShowContent()
   {
-    $query = $this->getShowQuery();
+    $query = $this->getShowQuery('petition')
+    ->leftJoin('petition.Products product')
+    ->leftJoin('petition.Partners partner');
     
     $this->petition = $this->getRecord($query);
-    $this->action = $this->petition->getNextAction();
+    
     $this->signupForm = $this->forms['signUpPetition'];
   }
 

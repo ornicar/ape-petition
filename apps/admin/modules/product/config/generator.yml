@@ -12,6 +12,8 @@ generator:
       fields:
         petitions_list:
           label: Pétitions
+        is_active:
+          label: Active
       list:
         display:
           - '=title'
@@ -19,6 +21,7 @@ generator:
           - petitions_list
           - url
           - text
+          - is_active
           - created_at
           - updated_at
         sort:
@@ -30,6 +33,7 @@ generator:
       filter:
         display:
           - title
+          - is_active
           - url
           - image_id
           - text
@@ -37,7 +41,7 @@ generator:
           - updated_at
       form:
         display:
-          NONE: [title]
+          NONE: [title, is_active]
           Image: [image_id_form, image_id_view]
           Pétitions: [petitions_list]
           Others: [url, text]
