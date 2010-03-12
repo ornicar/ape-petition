@@ -31,7 +31,9 @@ Content:
   Site:
 
     partner:
+      name:           Partenaire
 
     product:
+      name:           Produit
 
     citation:
