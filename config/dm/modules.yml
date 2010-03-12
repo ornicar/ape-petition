@@ -6,6 +6,7 @@ Content:
       components:
         header:
         footer:
+        nextAction:
 
   Petition:
 
@@ -39,3 +40,5 @@ Content:
       name:           Produit
 
     citation:
+      components:
+        list:         

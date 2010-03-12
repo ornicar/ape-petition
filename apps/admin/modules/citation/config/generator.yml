@@ -9,12 +9,15 @@ generator:
     with_doctrine_route: false
     config:
       actions: ~
-      fields: {  }
+      fields:
+        is_active:
+          label: Active
       list:
         display:
           - '=id'
           - text
           - source
+          - is_active
           - created_at
           - updated_at
         sort:
@@ -26,12 +29,14 @@ generator:
       filter:
         display:
           - id
+          - is_active
           - text
           - source
           - created_at
           - updated_at
       form:
         display:
+          NONE: [is_active]
           Text: [text]
           Source: [source]
         class: CitationAdminForm

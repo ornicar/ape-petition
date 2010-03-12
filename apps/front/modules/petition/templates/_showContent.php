@@ -3,7 +3,7 @@
 /*
  * Prochaine action
  */
-include_partial('petition/_next_action', array('petition' => $petition));
+include_partial('petition/_nextAction', array('petition' => $petition));
 
 /*
  * Titre et description de la pétition
@@ -13,7 +13,7 @@ include_partial('petition/_description', array('petition' => $petition));
 /*
  * Formulaire de signature de la pétition
  */
-include_partial('petition/_signup_form', array('form' => $signupForm));
+include_partial('petition/_signupForm', array('form' => $signupForm));
 
 /*
  * Actualités

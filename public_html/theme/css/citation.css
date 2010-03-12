@@ -1,0 +1,8 @@
+div.citation_list ul {
+  height: 6em;
+}
+
+div.citation_list span {
+  cursor: pointer;
+  margin: 1em;
+}

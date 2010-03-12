@@ -1,1 +1,10 @@
 parameters:
+
+  email_sender.class:     myEmailSender
+
+services:
+
+  email_sender:
+    class:                %email_sender.class%
+    shared:               true
+    arguments:            [ @service_container, @dispatcher ]

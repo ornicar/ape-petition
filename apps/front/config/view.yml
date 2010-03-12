@@ -9,8 +9,10 @@ default:
     - main
     - text
     - markdown
+    - citation
 
   javascripts:
+    - cycle/jquery.cycle.lite.min
     - countdown/jquery.countdown.min
     - front
 

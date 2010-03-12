@@ -11,33 +11,18 @@ class ProjectConfiguration extends dmProjectConfiguration
     parent::setup();
     
     $this->enablePlugins(array(
-      'dmTagPlugin'
+      'dmTagPlugin',
+      'dmFlowPlayerPlugin',
+      'dmContactPlugin'
     ));
 
     $this->setWebDir(sfConfig::get('sf_root_dir').'/public_html');
 
-    $this->dispatcher->connect('signature.created', array($this, 'listenToSignatureCreatedEvent'));
-
-    $this->dispatcher->connect('user.updated', array($this, 'listenToUserUpdatedEvent'));
+    $this->dispatcher->connect('dm.context.loaded', array($this, 'listenToContextLoadedEvent'));
   }
 
-  public function listenToUserUpdatedEvent(sfEvent $e)
+  public function listenToContextLoadedEvent(sfEvent $e)
   {
-    if(dmDb::table('DmUser')->getNbContacts() == (dmConfig::get('objectif_principal')-50))
-    {
-      // send email
-    }
-  }
-
-  public function listenToSignatureCreatedEvent(sfEvent $e)
-  {
-    $signature  = $e->getSubject();
-    $petition   = $signature->Petition;
-    $action     = $petition->nextAction;
-
-    if($action && $petition->nbSignatures == ($action->goal - 50))
-    {
-      // send email
-    }
+    $e->getSubject()->get('email_sender')->connect();
   }
 }
