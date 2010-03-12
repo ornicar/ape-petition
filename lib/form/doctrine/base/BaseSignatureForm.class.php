@@ -8,7 +8,7 @@
  * @package    ape-petition
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseSignatureForm extends BaseFormDoctrine
 {
@@ -37,27 +37,6 @@ abstract class BaseSignatureForm extends BaseFormDoctrine
     $this->setupInheritance();
 
     parent::setup();
-    
-    // Unset automatic fields like 'created_at', 'updated_at', 'position'
-    // override this method in your form to keep them
-    parent::unsetAutoFields();
-  }
-
-
-  protected function doBind(array $values)
-  {
-    parent::doBind($values);
-  }
-  
-  public function processValues($values)
-  {
-    $values = parent::processValues($values);
-    return $values;
-  }
-  
-  protected function doUpdateObject($values)
-  {
-    parent::doUpdateObject($values);
   }
 
   public function getModelName()

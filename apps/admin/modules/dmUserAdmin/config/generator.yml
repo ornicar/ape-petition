@@ -38,7 +38,7 @@ generator:
         display:
           NONE: [username, email, password, password_again, is_active, is_super_admin]
           "Civilité": [first_name, last_name, profession]
-          "Adresse": [street, city, zip_code, country_id]
+          "Adresse": [street, city, postal_code, country_id]
           "Photo": [photo_id_form, photo_id_view]
           "Newsletters": [is_letter_actu, is_letter_action]
           "Groups & Permissions": [groups_list, permissions_list]

@@ -1,0 +1,47 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Collection
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: collection
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields: {  }
+      list:
+        display:
+          - '=title'
+          - dm_user_id
+          - petition_id
+          - text
+          - goal
+          - hash_code
+          - created_at
+          - updated_at
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - title
+          - dm_user_id
+          - petition_id
+          - text
+          - goal
+          - hash_code
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [title, dm_user_id, petition_id]
+          Text: [text]
+          Others: [goal, hash_code]
+        class: CollectionAdminForm
+        fields: {  }
+      edit: ~
+      new: ~

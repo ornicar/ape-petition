@@ -23,7 +23,7 @@ generator:
       list:
         display:
           - '=title'
-          - signature_list
+          - collections_list
           - action_list
           - signatories_list
           - partners_list
@@ -58,7 +58,7 @@ generator:
           Text: [text]
           Utilisateurs: [signatories_list]
           Tags: [tags]
-          Signatures: [signature_list]
+          Collectes: [collections_list]
           Actions: [action_list]
           Others: [slogan, url_feed_actu, url_feed_communique]
         class: PetitionAdminForm

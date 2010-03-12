@@ -9,26 +9,29 @@ Content:
 
   Petition:
 
-    dmUser:
-      name:           Utilisateur
-
     petition:
       name:           Pétition
       components:
         list:
         show:
 
+    action:
+
+  Utilisateur:
+
+    dmUser:
+      name:           Utilisateur
+
+    collection:
+      name:           Collecte
+
     country:
       name:           Pays
 
-    collecte:
+  Site:
 
-    signature:
+    partners:
 
-    action:
-
-    partenaire:
-
-    produit:
+    products:
 
     citation:
