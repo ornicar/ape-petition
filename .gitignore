@@ -7,5 +7,5 @@ public_html/cache/*
 public_html/.htaccess
 public_html/dm*Plugin
 public_html/sf*
-_lib/*/base/*
+lib/*/base/*
 nbproject
