@@ -17,21 +17,21 @@ Content:
 
     action:
 
+    collection:
+      name:           Collecte
+
   Utilisateur:
 
     dmUser:
       name:           Utilisateur
-
-    collection:
-      name:           Collecte
 
     country:
       name:           Pays
 
   Site:
 
-    partners:
+    partner:
 
-    products:
+    product:
 
     citation:

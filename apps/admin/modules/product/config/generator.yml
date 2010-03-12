@@ -1,0 +1,48 @@
+generator:
+  class: dmAdminDoctrineGenerator
+  param:
+    model_class: Product
+    theme: dmAdmin
+    non_verbose_templates: true
+    with_show: false
+    route_prefix: product
+    with_doctrine_route: false
+    config:
+      actions: ~
+      fields:
+        petitions_list:
+          label: Pétitions
+      list:
+        display:
+          - '=title'
+          - image_id
+          - petitions_list
+          - url
+          - text
+          - created_at
+          - updated_at
+        sort:
+          - created_at
+          - desc
+        table_method: getAdminListQuery
+        table_count_method: ~
+        sortable: false
+      filter:
+        display:
+          - title
+          - url
+          - image_id
+          - text
+          - created_at
+          - updated_at
+      form:
+        display:
+          NONE: [title]
+          Image: [image_id_form, image_id_view]
+          Pétitions: [petitions_list]
+          Others: [url, text]
+        class: ProductAdminForm
+        fields:
+          url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
+      edit: ~
+      new: ~
