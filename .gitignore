@@ -6,6 +6,6 @@ data/*
 public_html/cache/*
 public_html/.htaccess
 public_html/dm*Plugin
-public_html/sfFormExtraPlugin
+public_html/sf*
 
 nbproject
