@@ -25,6 +25,13 @@ class Petition extends BasePetition
     ->count();
   }
 
+  public function getNbCollections()
+  {
+    return dmDb::query('Collection c')
+    ->where('c.petition_id = ?', $this->id)
+    ->count();
+  }
+
   public function getActiveProducts()
   {
     return $this->getActiveRelatedRecord('Products');

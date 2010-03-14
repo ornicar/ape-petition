@@ -18,8 +18,6 @@ echo _tag('input type="hidden" name="code"', $collection->hashCode);
 
 echo _open('ul');
 
-  echo _tag('li', $form['title']->label('Titre de la collecte *')->field()->error());
-
   echo _tag('li', $form['goal']->label('Mon objectif *')->field()->error());
 
   echo _tag('li', $form['text']->label('Pourquoi participer à cette pétition *')->field()->error());

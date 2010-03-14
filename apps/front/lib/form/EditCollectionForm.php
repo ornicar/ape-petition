@@ -7,7 +7,7 @@ class EditCollectionForm extends CollectionForm
   {
     parent::configure();
     
-    $this->useFields(array('title', 'goal', 'text'));
+    $this->useFields(array('goal', 'text'));
 
     $this->validatorSchema['goal'] = new sfValidatorInteger(array(
       'min' => $this->getObject()->nbSignatures +1,

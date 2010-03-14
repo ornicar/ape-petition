@@ -24,8 +24,8 @@ generator:
         display:
           - '=title'
           - slogan
-          - collections_list
           - actions_list
+          - nb_collections
           - nb_signatures
           - is_active
           - created_at
