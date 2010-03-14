@@ -30,7 +30,9 @@ test:
 dev:
   mailer:
     param:
-      delivery_strategy: none
+      delivery_strategy:  none
+      transport:
+        class:            Swift_NullTransport
 
 all:
   routing:

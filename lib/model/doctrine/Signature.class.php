@@ -13,6 +13,13 @@
 class Signature extends BaseSignature
 {
 
+  public function preInsert($event)
+  {
+    $this->hashCode = dmString::random(12);
+
+    return parent::preInsert($event);
+  }
+
   public function postInsert($event)
   {
     $this->getEventDispatcher()->notify(new sfEvent($this, 'signature.created'));

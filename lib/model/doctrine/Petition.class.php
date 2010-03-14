@@ -35,6 +35,11 @@ class Petition extends BasePetition
     return $this->getActiveRelatedRecord('Partners');
   }
 
+  public function getActiveCollections()
+  {
+    return $this->getActiveRelatedRecord('Collections');
+  }
+
   protected function getActiveRelatedRecord($relationAlias)
   {
     $records = $this->get($relationAlias)->getData();

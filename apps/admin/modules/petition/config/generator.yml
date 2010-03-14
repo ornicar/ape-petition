@@ -23,21 +23,11 @@ generator:
       list:
         display:
           - '=title'
-          - collections_list
-          - action_list
-          - signatories_list
-          - partners_list
-          - products_list
-          - tags_list
-          - text
           - slogan
+          - collections_list
+          - actions_list
+          - nb_signatures
           - is_active
-          - actu_page_url
-          - actu_feed_url
-          - facebook_page_url
-          - twitter_page_url
-          - communique_page_url
-          - communique_feed_url
           - created_at
           - updated_at
         sort:
@@ -62,22 +52,21 @@ generator:
           - updated_at
       form:
         display:
-          NONE: [title, is_active]
+          NONE: [title, is_active, slogan, style]
           Text: [text]
-          Utilisateurs: [signatories_list]
-          Partenaires: [partners_list]
-          Produits: [products_list]
-          Tags: [tags]
-          Collectes: [collections_list]
-          Actions: [action_list]
-          Others: [slogan, actu_page_url, actu_feed_url, facebook_page_url, twitter_page_url, communique_page_url, communique_feed_url]
+          "Tags et actions": [tags, actions_list]
+          "Signataires et collectes": [signatories_list, collections_list]
+          "Partenaires et produits": [partners_list, products_list]
+          "Actualités": [actu_page_url, actu_feed_url]
+          "Communiqués": [communique_page_url, communique_feed_url]
+          "Liens": [facebook_page_url, twitter_page_url]
         class: PetitionAdminForm
         fields:
-          actu_page_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
-          actu_feed_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
-          facebook_page_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
-          twitter_page_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
-          communique_page_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
-          communique_feed_url: { is_link: true, help: 'Drag & drop a page here from the PAGES panel, or write an url' }
+          actu_page_url: { is_link: true }
+          actu_feed_url: { is_link: true }
+          facebook_page_url: { is_link: true }
+          twitter_page_url: { is_link: true }
+          communique_page_url: { is_link: true }
+          communique_feed_url: { is_link: true }
       edit: ~
       new: ~

@@ -7,7 +7,7 @@
   background: #F4F4F4;
 }
 
-.dm_layout_top .navigation_menu li,
+.dm_layout_top .top_menu li,
 .dm_layout_bottom .navigation_menu li {
   display: inline;
   margin: 1em;
@@ -16,6 +16,11 @@
 .dm_content {
   width: 750px;
   float: left;
+}
+
+.dm_content.full_width {
+  width: 1000px;
+  float: none;
 }
 
 .dm_layout_left {

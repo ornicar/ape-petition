@@ -4,10 +4,12 @@ Content:
   
     main:                   # the main module is required, and must not be removed.
       components:
-        header:
-        footer:
         nextAction:
         sitemap:
+          cache:      true
+        sharePage:
+        topMenu:
+          cache:      true
 
   Petition:
 
@@ -17,17 +19,38 @@ Content:
       components:
         list:
         showTitle:
+          cache:      true
         showContent:
+        showTopMenu:
+          cache:      true
 
     action:
+      components:
+        list:
 
     collection:
       name:           Collecte
+      page:           true
+      parent:         petition
+      components:
+        show:
 
   Utilisateur:
 
     dmUser:
       name:           Utilisateur
+      components:
+        signupAction:
+        unsuscribeLetter:
+
+    inscription:
+      components:
+        presentation:
+        creerCollecte:
+        diffuser:
+        recevoirCampagnes:
+        soutenir:
+        suivreActu:
 
     country:
       name:           Pays
@@ -41,6 +64,10 @@ Content:
       name:           Produit
 
     citation:
+      components:
+        list:
+
+    siteWidget:
       components:
         list:
 

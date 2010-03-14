@@ -9,15 +9,16 @@ generator:
     with_doctrine_route: false
     config:
       actions: ~
-      fields: {  }
+      fields:
+        is_active:
+          label: Active
       list:
         display:
-          - '=title'
+          - '=id'
           - dm_user_id
           - petition_id
-          - text
-          - goal
-          - hash_code
+          - _goal
+          - is_active
           - created_at
           - updated_at
         sort:
@@ -28,7 +29,7 @@ generator:
         sortable: false
       filter:
         display:
-          - title
+          - is_active
           - dm_user_id
           - petition_id
           - text
@@ -38,9 +39,10 @@ generator:
           - updated_at
       form:
         display:
-          NONE: [title, dm_user_id, petition_id]
+          NONE: [dm_user_id, petition_id, is_active]
           Text: [text]
-          Others: [goal, hash_code]
+          Objectif: [_goal]
+          Code: [hash_code]
         class: CollectionAdminForm
         fields: {  }
       edit: ~

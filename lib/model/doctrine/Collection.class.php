@@ -12,4 +12,43 @@
  */
 class Collection extends BaseCollection
 {
+
+  public function __toString()
+  {
+    return $this->get('Petition')->__toString();
+  }
+
+  public function getStyle()
+  {
+    return $this->get('Petition')->get('style');
+  }
+
+  public function getNbSignatures()
+  {
+    return dmDb::table('Signature')->countForCollectionAndPetition($this, $this->get('Petition'));
+  }
+
+  public function preInsert($event)
+  {
+    $this->hashCode = dmString::random(8);
+
+    return parent::preInsert($event);
+  }
+
+  public function postInsert($event)
+  {
+    /*
+     * Change the user signature to make it come from its collection
+     */
+    if($signature = dmDb::table('Signature')->findOneByUserAndPetition($this->User, $this->Petition))
+    {
+      $signature->collection_id = $this->id;
+      $signature->save();
+    }
+
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'collection.created'));
+
+    return parent::postInsert($event);
+  }
+
 }

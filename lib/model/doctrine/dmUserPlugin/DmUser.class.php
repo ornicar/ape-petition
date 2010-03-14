@@ -12,6 +12,47 @@
  */
 class DmUser extends PluginDmUser
 {
+  
+  public function preInsert($event)
+  {
+    $this->hashCode = dmString::random(8);
+
+    return parent::preInsert($event);
+  }
+
+  public function getFullName()
+  {
+    return $this->get('first_name').' '.$this->get('last_name');
+  }
+
+  public function signPetition(Petition $petition, Collection $collection = null)
+  {
+    if(!dmDb::table('Signature')->existsByUserAndPetition($this, $petition))
+    {
+      dmDb::table('Signature')->createForUserAndPetition($this, $petition, $collection)->save();
+    }
+
+    return $this;
+  }
+
+  public function hasCollectionForPetition(Petition $petition)
+  {
+    return dmDb::table('Collection')->existsByUserAndPetition($this, $petition);
+  }
+
+  public function postInsert($event)
+  {
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'user.created'));
+
+    return parent::postInsert($event);
+  }
+
+  public function postUpdate($event)
+  {
+    $this->getEventDispatcher()->notify(new sfEvent($this, 'user.updated'));
+
+    return parent::postUpdate($event);
+  }
 
   public function preSave($event)
   {
@@ -20,7 +61,37 @@ class DmUser extends PluginDmUser
       $this->username = $this->email;
     }
 
+    if((!$this->slug || is_numeric($this->slug)) && $this->firstName && $this->lastName)
+    {
+      $this->slug = $this->createSlug();
+    }
+
+    if($this->isLetterActu && !$this->isLetterAction)
+    {
+      throw new dmRecordException('Impossible to have is_letter_actu = true && is_letter_action = false');
+    }
+
     return parent::preSave($event);
   }
 
+  protected function createSlug()
+  {
+    $baseSlug = dmString::slugify($this->fullName);
+    $existQuery = $this->getTable()->createQuery('u')->where('u.slug = ?');
+
+    $counter = 1;
+    $slug = $baseSlug;
+    while($this->getTable()->createQuery('u')->where('u.slug = ?', $slug)->exists())
+    {
+      $slug = $baseSlug.'-'.$counter;
+      $counter++;
+    }
+
+    return $slug;
+  }
+
+  public function getEmailProvider()
+  {
+    return preg_replace('/^.+@([^\.]+)\..+$/', '$1', $this->email);
+  }
 }

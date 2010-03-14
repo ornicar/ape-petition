@@ -2,9 +2,16 @@ parameters:
 
   email_sender.class:     myEmailSender
 
+  open_inviter.class:     dmOpenInviter
+
 services:
 
   email_sender:
     class:                %email_sender.class%
     shared:               true
     arguments:            [ @service_container, @dispatcher ]
+
+  open_inviter:
+    class:                %open_inviter.class%
+    shared:               true
+    arguments:            []

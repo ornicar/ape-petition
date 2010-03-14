@@ -3,21 +3,9 @@
  * Main components
  * 
  * No redirection nor database manipulation ( insert, update, delete ) here
- * 
- * 
  */
 class mainComponents extends myFrontModuleComponents
 {
-
-  public function executeHeader()
-  {
-    // Your code here
-  }
-
-  public function executeFooter()
-  {
-    // Your code here
-  }
 
   public function executeNextAction()
   {
@@ -29,6 +17,16 @@ class mainComponents extends myFrontModuleComponents
   public function executeSitemap()
   {
     $this->sitemap = $this->getService('menu', 'dmSitemapMenu')->build();
+  }
+
+  public function executeSharePage()
+  {
+    $this->url = $this->getHelper()->link($this->getPage())->getAbsoluteHref();
+  }
+
+  public function executeTopMenu()
+  {
+    $this->menu = $this->getService('menu', 'HomeMenu')->build();
   }
 
 

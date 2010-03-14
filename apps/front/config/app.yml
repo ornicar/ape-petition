@@ -1,2 +1,5 @@
-# default values
-#all:
+all:
+
+  openinviter:
+
+    providers:  [ gmail, yahoo, hotmail ]

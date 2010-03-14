@@ -15,15 +15,39 @@ class SignupPetitionForm extends dmForm
   public function configure()
   {
     $this->widgetSchema['email'] = new sfWidgetFormInputText();
-    $this->widgetValidator['email'] = new sfValidatorEmail();
+    $this->validatorSchema['email'] = new sfValidatorEmail();
 
-    $this->widgetSchema['petition_id'] = new sfWidgetFormInputHidden();
-    $this->widgetValidator['petition_id'] = new sfValidatorDoctrineChoice(array(
-      'model'     => 'Petition',
+    $this->widgetSchema['collection_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['collection_id'] = new sfValidatorDoctrineChoice(array(
+      'model'     => 'Collection',
       'column'    => 'id',
       'required'  => false
     ));
+  }
 
-    $this->setDefault('petition_id', $this->petition->id);
+  public function save()
+  {
+    $email = $this->getValue('email');
+
+    if(!$user = dmDb::table('DmUser')->findOneByEmail($email))
+    {
+      $user = new DmUser();
+      $user->email = $email;
+    }
+    
+    $user->save();
+
+    if($collectionId = $this->getValue('collection_id'))
+    {
+      $collection = dmDb::table('Collection')->find($collectionId);
+    }
+    else
+    {
+      $collection = null;
+    }
+
+    $user->signPetition($this->petition, $collection);
+
+    return $user;
   }
 }

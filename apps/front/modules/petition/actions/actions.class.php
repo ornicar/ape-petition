@@ -9,11 +9,6 @@ class petitionActions extends myFrontModuleActions
   public function executeShowPage(dmWebRequest $request)
   {
     $petition = $this->getPage()->getRecord();
-    
-    /*
-     * Remember the last petition viewed
-     */
-    $this->getUser()->setLastPetition($petition);
 
     /*
      * Create and handle the signup form
@@ -24,9 +19,13 @@ class petitionActions extends myFrontModuleActions
     {
       if($form->bindAndValid($request))
       {
-        $form->save();
-        #TODO redirect to next step
-        $this->redirectBack();
+        $user = $form->save();
+
+        $this->getUser()->setCurrentEmail($user->email);
+
+        $this->getUser()->setFlash('suscribe_action_form', true);
+
+        $this->redirect($this->getHelper()->link('inscription/presentation')->getHref());
       }
     }
     

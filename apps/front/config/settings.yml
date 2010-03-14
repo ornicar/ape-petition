@@ -33,7 +33,7 @@ all:
     # Enable the database manager
     use_database:           true
 
-    standard_helpers:       [ Text, Date ]
+    standard_helpers:       [ Text, Date, My ]
 
   .actions:
   

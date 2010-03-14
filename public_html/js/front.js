@@ -1,5 +1,63 @@
 (function($)
 {
+  /*
+   * OpenInviter
+   */
+  $('.open_inviter_form').each(function()
+  {
+    var $form = $(this), url = $form.metadata().url;
+
+    function reloadForm()
+    {
+      var data = {
+        open_inviter: {
+          email:      $form.find('.email').val(),
+          password:   $form.find('.password').val(),
+          provider:   $form.find('.provider').val()
+        }
+      };
+
+      $form.html('Chargement...');
+
+      $.ajax({
+        url:      url,
+        type:     'POST',
+        data:     data,
+        cache:    false,
+        success:  function(html)
+        {
+          $form.html(html);
+          
+          if(contacts = $form.find('.contacts').text())
+          {
+            $('.contacts_receiver').val(contacts);
+          }
+          
+          $form.find('a.import_contacts').click(function()
+          {
+            reloadForm();
+          });
+
+          $form.find('input, select').bind('keypress', function(e)
+          {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if(code == 13) //Enter keycode
+            {
+              reloadForm();
+              e.stopPropagation();
+              return false;
+            }
+          });
+        }
+      });
+    }
+
+    reloadForm();
+  });
+
+  /*
+   * Compteurs
+   */
   $('div.jquery_countdown').each(function()
   {
     $.countdown.regional['fr'] = {
@@ -14,6 +72,9 @@
     $(this).countdown({until: $(this).text()});
   });
 
+  /*
+   * Citations
+   */
   $('div.citation_list ul').each(function()
   {
     $(this).cycle({

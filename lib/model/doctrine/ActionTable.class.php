@@ -13,7 +13,7 @@ class ActionTable extends myDoctrineTable
 
     if($petition)
     {
-      $query->andWhere('a.petition_id = ?', $this->id);
+      $query->andWhere('a.petition_id = ?', $petition->id);
     }
 
     return $query->fetchOne();

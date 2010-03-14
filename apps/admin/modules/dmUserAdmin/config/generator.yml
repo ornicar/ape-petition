@@ -23,8 +23,9 @@ generator:
       list:
         display:
           - =email
-          - is_active
-          - is_super_admin
+          - first_name
+          - last_name
+          - is_letter_actu
           - is_letter_action
           - last_login
           - created_at
@@ -38,9 +39,10 @@ generator:
       form:
         display:
           NONE: [username, email, password, password_again, is_active, is_super_admin]
-          "Civilité": [first_name, last_name, profession]
+          "Civilité": [first_name, last_name, profession, gender]
           "Adresse": [street, city, postal_code, country_id]
           "Photo": [photo_id_form, photo_id_view]
           "Newsletters": [is_letter_actu, is_letter_action]
           "Groups & Permissions": [groups_list, permissions_list]
+          "Special": [slug, hash_code]
         class: DmUserAdminForm
