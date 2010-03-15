@@ -5,6 +5,11 @@ if($sf_user->hasFlash('presentation_form'))
   echo _tag('p', 'Merci pour votre inscription. Vous recevrez très prochainement nos appels à Action.');
 }
 
+if($sf_user->hasFlash('creer_collecte_form'))
+{
+  echo _tag('p', 'Votre collecte a été créée.');
+}
+
 echo $form->open();
 
 echo _open('ul');

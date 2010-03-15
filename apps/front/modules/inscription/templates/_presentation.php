@@ -15,7 +15,7 @@ echo _open('ul');
 
   echo _tag('li', $form['last_name']->label('Votre nom *')->field()->error());
 
-  echo _tag('li', $form['profession']->label('Votre fonction *')->field()->error());
+  echo _tag('li', $form['profession']->label('Votre fonction')->field()->error());
 
   echo _tag('li', $form['country_id']->label('Pays *')->field()->error());
 
