@@ -16,7 +16,7 @@ class mainComponents extends myFrontModuleComponents
 
   public function executeSitemap()
   {
-    $this->sitemap = $this->getService('menu', 'dmSitemapMenu')->build();
+    $this->sitemap = $this->getService('menu', 'SitemapMenu')->build();
   }
 
   public function executeSharePage()
