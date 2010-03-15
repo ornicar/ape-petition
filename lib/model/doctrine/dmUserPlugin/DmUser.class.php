@@ -27,6 +27,11 @@ class DmUser extends PluginDmUser
 
   public function signPetition(Petition $petition, Collection $collection = null)
   {
+    if($collection && $collection->petition_id != $petition->id)
+    {
+      $collection = null;
+    }
+    
     if(!dmDb::table('Signature')->existsByUserAndPetition($this, $petition))
     {
       dmDb::table('Signature')->createForUserAndPetition($this, $petition, $collection)->save();
