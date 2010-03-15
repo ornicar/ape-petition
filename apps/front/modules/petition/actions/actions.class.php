@@ -14,7 +14,7 @@ class petitionActions extends myFrontModuleActions
      * Create and handle the signup form
      */
     $form = new SignupPetitionForm($petition);
-    
+
     if($request->isMethod('post') && $request->hasParameter($form->getName()))
     {
       if($form->bindAndValid($request))

@@ -29,3 +29,6 @@ all:
     page_cache:                         # Will cache entire pages and serve them very fast.
       enabled:            false         # Enable the page cache for all pages
       life_time:          86400         # Server-side lifetime of the cache in seconds (86400 seconds equals one day)
+
+  toolBar:
+    flavour:              blue
