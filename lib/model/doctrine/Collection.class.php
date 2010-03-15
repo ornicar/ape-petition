@@ -15,7 +15,7 @@ class Collection extends BaseCollection
 
   public function __toString()
   {
-    return $this->get('Petition')->__toString();
+    return $this->get('Petition')->__toString().' par '.$this->get('User')->__toString();
   }
 
   public function getStyle()
