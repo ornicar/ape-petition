@@ -38,6 +38,7 @@ Petition:
   columns:
     title:              { type: string(255), notnull: true, unique: true }
     text:               { type: clob, extra: markdown }
+    resume:             { type: clob, extra: markdown }
     slogan:             { type: string(500), notnull: true }
     style:              { type: string(128), notnull: true, default: "default" }
     is_active:          { type: boolean, notnull: true, default: false }

@@ -1,60 +1,14 @@
 (function($)
 {
   /*
-   * OpenInviter
+   * Afficher la suite du texte d'une pétition
    */
-  $('.open_inviter_form').each(function()
-  {
-    var $form = $(this), url = $form.metadata().url;
-
-    function reloadForm()
-    {
-      var data = {
-        open_inviter: {
-          email:      $form.find('.email').val(),
-          password:   $form.find('.password').val(),
-          provider:   $form.find('.provider').val()
-        }
-      };
-
-      $form.html('Chargement...');
-
-      $.ajax({
-        url:      url,
-        type:     'POST',
-        data:     data,
-        cache:    false,
-        success:  function(html)
-        {
-          $form.html(html);
-          
-          if(contacts = $form.find('.contacts').text())
-          {
-            $('.contacts_receiver').val(contacts);
-          }
-          
-          $form.find('a.import_contacts').click(function()
-          {
-            reloadForm();
-          });
-
-          $form.find('input, select').bind('keypress', function(e)
-          {
-            var code = (e.keyCode ? e.keyCode : e.which);
-            if(code == 13) //Enter keycode
-            {
-              reloadForm();
-              e.stopPropagation();
-              return false;
-            }
-          });
-        }
-      });
-    }
-
-    reloadForm();
-  });
-
+   $('a.show_more').click(function()
+   {
+     $('div.petition_text').toggle(200);
+   });
+   $('div.petition_text').hide();
+  
   /*
    * Compteurs
    */
@@ -85,6 +39,61 @@
       height:       'auto', // container height
       fit:           1     // force slides to fit container
     });
+  });
+  
+  /*
+   * OpenInviter
+   */
+  $('.open_inviter_form').each(function()
+  {
+    var $form = $(this), url = $form.metadata().url;
+
+    function reloadForm()
+    {
+      var data = {
+        open_inviter: {
+          email:      $form.find('.email').val(),
+          password:   $form.find('.password').val(),
+          provider:   $form.find('.provider').val()
+        }
+      };
+
+      $form.html('Chargement...');
+
+      $.ajax({
+        url:      url,
+        type:     'POST',
+        data:     data,
+        cache:    false,
+        success:  function(html)
+        {
+          $form.html(html);
+
+          if(contacts = $form.find('.contacts').text())
+          {
+            $('.contacts_receiver').val(contacts);
+          }
+
+          $form.find('a.import_contacts').click(function()
+          {
+            reloadForm();
+          });
+
+          $form.find('input, select').bind('keypress', function(e)
+          {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if(code == 13) //Enter keycode
+            {
+              reloadForm();
+              e.stopPropagation();
+              return false;
+            }
+          });
+        }
+      });
+    }
+
+    reloadForm();
   });
   
 })(jQuery);

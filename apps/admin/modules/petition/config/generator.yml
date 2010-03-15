@@ -57,7 +57,7 @@ generator:
       form:
         display:
           NONE: [title, is_active, slogan, style]
-          Text: [text]
+          Text: [resume, text]
           "Tags et actions": [tags, actions_list]
           "Signataires et collectes": [signatories_list, collections_list]
           "Partenaires et produits": [partners_list, products_list]
