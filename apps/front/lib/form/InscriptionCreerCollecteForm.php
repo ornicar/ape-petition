@@ -46,6 +46,7 @@ class InscriptionCreerCollecteForm extends dmForm
 
     $this->widgetSchema['text'] = new sfWidgetFormTextarea();
     $this->validatorSchema['text'] = new dmValidatorStringEscape();
+    $this->setDefault('text', $this->petition->collecteMotivation);
 
     $this->widgetSchema['accept_conditions'] = new sfWidgetFormInputCheckbox();
     $this->validatorSchema['accept_conditions'] = new sfValidatorBoolean(array(

@@ -47,6 +47,7 @@ Petition:
     twitter_page_url:   { type: string(255), notnull: true, default: "http://twitter.com/APEnvironnement", extra: link }
     communique_page_url: { type: string(255), notnull: false, extra: link }
     communique_feed_url: { type: string(255), notnull: false, extra: link }
+    collecte_motivation: { type: clob }
   relations:
     Signatories:
       class:            DmUser
@@ -103,14 +104,17 @@ Signature:
       class:            DmUser
       local:            dm_user_id
       onDelete:         CASCADE
+      foreignAlias:     Signatures
     Petition:
       class:            Petition
       local:            petition_id
       onDelete:         CASCADE
+      foreignAlias:     Signatures
     Collection:
       class:            Collection
       local:            collection_id
       onDelete:         SET NULL
+      foreignAlias:     Signatures
 
 Action:
   actAs:
@@ -230,6 +234,7 @@ SiteWidget:
 DmContact:
   columns:
     petition_id:        { type: integer }
+    is_active:          { type: boolean, notnull: true, default: false }
   relations:
     Petition:
       class:            Petition
