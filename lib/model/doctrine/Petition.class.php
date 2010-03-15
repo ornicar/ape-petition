@@ -77,12 +77,26 @@ class Petition extends BasePetition
 
   public function getActuFeedItems()
   {
-    return $this->getFeedItems($this->actu_feed_url);
+    try
+    {
+      return $this->getFeedItems($this->actu_feed_url);
+    }
+    catch(Exception $e)
+    {
+      return array();
+    }
   }
 
   public function getCommuniqueFeedItems()
   {
-    return $this->getFeedItems($this->communique_feed_url);
+    try
+    {
+      return $this->getFeedItems($this->communique_feed_url);
+    }
+    catch(Exception $e)
+    {
+      return array();
+    }
   }
 
   protected function getFeedItems($url)

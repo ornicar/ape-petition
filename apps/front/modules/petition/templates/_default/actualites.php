@@ -12,8 +12,10 @@ echo _open('div.actualites');
   );
 
   // utiliser uniquement le premier item
-  if($item = $petition->actuFeedItems[0])
+  if(isset($petition->actuFeedItems[0]))
   {
+    $item = $petition->actuFeedItems[0];
+    
     echo _tag('h3', _link($item->getLink())->text(escape($item->getTitle())));
 
     echo _open('div.description.clearfix');
