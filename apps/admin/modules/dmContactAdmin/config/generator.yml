@@ -1,15 +1,23 @@
 generator:
   param:
     config:
+      fields:
+        is_active:
+          label:  Traité
+        body:
+          label:  Message
+        answer:
+          label:  Répondre
       list:
         display:
           - '=name'
           - email
           - body
           - petition_id
+          - is_active
+          - _answer
           - created_at
-          - updated_at
       form:
         display:
-          NONE: [name, email, petition_id]
-          Body: [body]
+          NONE: [name, email, petition_id, is_active, _answer]
+          Body: [_body]
