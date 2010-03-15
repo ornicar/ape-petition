@@ -103,6 +103,8 @@ class inscriptionActions extends myFrontModuleActions
 
         $this->getUser()->setFlash('presentation_form', true);
 
+        $this->completedPresentation($user);
+        
         $this->redirect($nextStep);
       }
     }
@@ -114,10 +116,20 @@ class inscriptionActions extends myFrontModuleActions
        */
       if($form->isValidByDefault())
       {
+        $this->completedPresentation($user);
+        
         $this->redirect($nextStep);
       }
     }
 
     $this->forms['InscriptionPresentation'] = $form;
+  }
+
+  protected function completedPresentation(DmUser $user)
+  {
+    if($petition = $this->getUser()->getLastPetition())
+    {
+      $user->signPetition($petition, $this->getUser()->getLastCollection());
+    }
   }
 }

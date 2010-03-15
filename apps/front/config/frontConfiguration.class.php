@@ -55,12 +55,5 @@ class frontConfiguration extends dmFrontApplicationConfiguration
         $form->setDefault('petition_id', $petition->id);
       }
     }
-    elseif($form instanceof SignupPetitionForm)
-    {
-      if($collection = $this->user->getLastCollection())
-      {
-        $form->setDefault('collection_id', $collection->id);
-      }
-    }
   }
 }
