@@ -11,11 +11,13 @@ echo _open('div.collections');
 
   echo _open('ul');
 
-  foreach($petition->activeCollections as $collection)
+  foreach($petition->bestActiveCollections as $collection)
   {
     echo _open('li.clearfix');
 
-      echo _link($collection);
+      echo _link($collection)->text(
+        $collection->User->fullName.' ( '.$collection->nb.'/'.$collection->goal.' )'
+      );
 
     echo _close('li');
   }

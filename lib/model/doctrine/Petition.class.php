@@ -47,6 +47,19 @@ class Petition extends BasePetition
     return $this->getActiveRelatedRecord('Collections');
   }
 
+  public function getBestActiveCollections($number = 10)
+  {
+    return dmDb::query('Collection c')
+    ->leftJoin('c.User u')
+    ->leftJoin('c.Signatures s')
+    ->select('c.goal, u.first_name, u.last_name, COUNT(s.id) as nb')
+    ->groupBy('c.id')
+    ->where('c.petition_id = ?', $this->id)
+    ->andWhere('c.is_active = ?', true)
+    ->limit(10)
+    ->fetchRecords();
+  }
+
   protected function getActiveRelatedRecord($relationAlias)
   {
     $records = $this->get($relationAlias)->getData();

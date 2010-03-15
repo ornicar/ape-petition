@@ -21,8 +21,7 @@ class petitionComponents extends myFrontModuleComponents
     ->leftJoin('petition.Products product')
     ->withDmMedia('Image', 'product')
     ->leftJoin('petition.Partners partner')
-    ->withDmMedia('Image', 'partner')
-    ->leftJoin('petition.Collections collection');
+    ->withDmMedia('Image', 'partner');
     
     $this->petition = $this->getRecord($query);
     $this->preloadPages($this->petition->activeCollections);
