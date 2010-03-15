@@ -14,7 +14,7 @@ class SignatureTable extends myDoctrineTable
   {
     return $this->createQuery('s')
     ->where('s.collection_id = ?', $collection->id)
-    ->where('s.petition_id = ?', $petition->id)
+    ->andWhere('s.petition_id = ?', $petition->id)
     ->count();
   }
 
