@@ -54,6 +54,9 @@ Content:
 
     country:
       name:           Pays
+      
+    export:
+      admin:          true
 
   Site:
 

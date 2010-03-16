@@ -1,0 +1,11 @@
+li.dm_form_element {
+  margin: 0.5em 0;
+}
+
+div.dm_user_my_account input.submit {
+  margin-top: 1em;
+}
+
+ul.checkbox_list {
+  margin-left:30%;
+}
