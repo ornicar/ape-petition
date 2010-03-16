@@ -2,4 +2,4 @@ all:
 
   openinviter:
 
-    providers:  [ gmail, yahoo, hotmail ]
+    providers:  [ gmail, yahoo, hotmail, facebook ]
