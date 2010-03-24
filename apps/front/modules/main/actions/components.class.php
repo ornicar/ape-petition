@@ -11,7 +11,7 @@ class mainComponents extends myFrontModuleComponents
   {
     $this->nbContacts = dmDb::table('DmUser')->getNbContacts();
     $this->objectif = dmConfig::get('objectif_principal');
-    $this->action = dmDb::table('Action')->getNext();
+    $this->timer = strtotime(dmConfig::get('timer_principal')) - time();
   }
 
   public function executeSitemap()
