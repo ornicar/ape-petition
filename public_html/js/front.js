@@ -23,7 +23,13 @@
     };
     $.countdown.setDefaults($.countdown.regional['fr']);
     
-    $(this).countdown({until: $(this).text()});
+    $(this).countdown({
+      until:    $(this).text(),
+      onExpiry: function()
+      {
+        window.location.reload();
+      }
+    });
   });
 
   /*
