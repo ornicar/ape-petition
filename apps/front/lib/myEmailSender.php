@@ -188,7 +188,11 @@ class myEmailSender
    */
   protected function createMail()
   {
-    return $this->container->getService('mail');
+    return $this->container
+    ->getService('mail')
+    ->addValues(array(
+      'unsuscribe_url' => $this->container->getService('helper')->link('+/dmUser/unsuscribe')->getAbsoluteHref()
+    ));
   }
 
   protected function getLink($something)

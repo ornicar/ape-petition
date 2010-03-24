@@ -5,6 +5,20 @@ require_once sfConfig::get('dm_core_dir').'/plugins/dmUserPlugin/modules/dmUser/
 class dmUserActions extends BasedmUserActions
 {
 
+  public function executeUnsuscribe(dmWebRequest $request)
+  {
+    $this->forward404Unless(
+      $user = dmDb::table('DmUser')->findOneByEmail($request->getParameter('email'))
+    );
+
+    $user->isLetterActu = false;
+    $user->isLetterAction = false;
+
+    $user->save();
+
+    return $this->renderText('Vous avez été désinscrit');
+  }
+
   public function executeSignupActionWidget(dmWebRequest $request)
   {
     $form = new SignupActionForm();
