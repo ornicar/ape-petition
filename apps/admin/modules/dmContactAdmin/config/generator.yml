@@ -20,4 +20,4 @@ generator:
       form:
         display:
           NONE: [name, email, petition_id, is_active, _answer]
-          Body: [_body]
+          Body: [_message]
