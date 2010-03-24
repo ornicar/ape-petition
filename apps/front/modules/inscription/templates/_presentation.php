@@ -21,6 +21,10 @@ echo _open('ul');
 
   echo _tag('li', $form['postal_code']->label('Code postal *')->field()->error());
 
+  echo _tag('li', $form['city']->label('Ville')->field()->error());
+
+  echo _tag('li', $form['street']->label('Adresse')->field()->error());
+
   if(isset($form['is_letter_actu']))
   {
     echo _tag('li',

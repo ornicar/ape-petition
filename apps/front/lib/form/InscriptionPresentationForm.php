@@ -16,6 +16,8 @@ class InscriptionPresentationForm extends DmUserForm
       'required' => true
     ));
 
+    $this->widgetSchema['street']->setAttribute('rows', 2);
+
     $this->useFields($this->getUsedFields());
   }
 
@@ -26,7 +28,9 @@ class InscriptionPresentationForm extends DmUserForm
       'last_name',
       'profession',
       'country_id',
-      'postal_code'
+      'postal_code',
+      'street',
+      'city'
     );
 
     /*
