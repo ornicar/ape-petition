@@ -7,17 +7,17 @@ class inscriptionActions extends myFrontModuleActions
 
   public function executeSoutenirPage(dmWebRequest $request)
   {
-    $this->forward404Unless($this->getCurrentUserByEmail());
+    $this->forwardHomeUnless($this->getCurrentUserByEmail());
   }
 
   public function executeRecevoirCampagnesPage(dmWebRequest $request)
   {
-    $this->forward404Unless($this->getCurrentUserByEmail());
+    $this->forwardHomeUnless($this->getCurrentUserByEmail());
   }
 
   public function executeDiffuserPage(dmWebRequest $request)
   {
-    $this->forward404Unless($user = $this->getCurrentUserByEmail());
+    $this->forwardHomeUnless($user = $this->getCurrentUserByEmail());
 
     $mail = $this->getService('mail')
     ->setTemplate('inscription_diffuser')
@@ -53,9 +53,9 @@ class inscriptionActions extends myFrontModuleActions
 
   public function executeCreerCollectePage(dmWebRequest $request)
   {
-    $this->forward404Unless($user = $this->getCurrentUserByEmail());
+    $this->forwardHomeUnless($user = $this->getCurrentUserByEmail());
 
-    $this->forward404Unless($petition = $this->getUser()->getLastPetition());
+    $this->forwardHomeUnless($petition = $this->getUser()->getLastPetition());
 
     $nextStep = $this->getHelper()->link('inscription/diffuser')->getHref();
 
@@ -83,7 +83,7 @@ class inscriptionActions extends myFrontModuleActions
 
   public function executePresentationPage(dmWebRequest $request)
   {
-    $this->forward404Unless($user = $this->getCurrentUserByEmail());
+    $this->forwardHomeUnless($user = $this->getCurrentUserByEmail());
 
     if($petition = $this->getUser()->getLastPetition())
     {
@@ -135,6 +135,15 @@ class inscriptionActions extends myFrontModuleActions
       $this->getService('dispatcher')->notify(new sfEvent($user, 'signup.petition', array(
         'petition' => $petition
       )));
+    }
+  }
+
+  protected function forwardHomeUnless($condition)
+  {
+    if(!$condition)
+    {
+      $this->getRequest()->setParameter('slug', '');
+      $this->forward('dmFront', 'page');
     }
   }
 }
