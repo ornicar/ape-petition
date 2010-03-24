@@ -16,7 +16,9 @@ class myEmailSender
   {
     $this->dispatcher->connect('signature.created', array($this, 'listenToSignatureCreatedEvent'));
 
-    $this->dispatcher->connect('user.created', array($this, 'listenToUserCreatedEvent'));
+    $this->dispatcher->connect('signup.action', array($this, 'listenToSignupActionEvent'));
+
+    $this->dispatcher->connect('signup.petition', array($this, 'listenToSignupPetitionEvent'));
 
     $this->dispatcher->connect('user.updated', array($this, 'listenToUserUpdatedEvent'));
 
@@ -49,18 +51,44 @@ class myEmailSender
     }
   }
 
-  public function listenToUserCreatedEvent(sfEvent $event)
+  public function listenToSignupActionEvent(sfEvent $event)
   {
     try
     {
       $user = $event->getSubject();
 
       $this->createMail()
-      ->setTemplate('inscription_confirmation')
+      ->setTemplate('inscription_confirmation_global')
       ->addValues(array(
         'number'  => dmDb::table('DmUser')->count(),
+        'email'   => $user->email,
+        'diffusion_message' => dmConfig::get('diffusion_message')
+      ))
+      ->send();
+    }
+    catch(Exception $e)
+    {
+      if(sfConfig::get('sf_debug'))
+      {
+        throw $e;
+      }
+    }
+  }
+
+  public function listenToSignupPetitionEvent(sfEvent $event)
+  {
+    try
+    {
+      $user = $event->getSubject();
+      $petition = $event['petition'];
+
+      $this->createMail()
+      ->setTemplate('inscription_confirmation_petition')
+      ->addValues(array(
+        'nb_signatures' => $petition->nbSignatures,
         'email'   => $user->email
       ))
+      ->addValues($petition, 'petition_')
       ->send();
     }
     catch(Exception $e)

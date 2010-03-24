@@ -24,6 +24,8 @@ generator:
           label: Signatures
         collecte_motivation:
           help: "Argumentaire par défaut pour les nouvelles collectes"
+        diffusion_message:
+          help: "Message de diffusion par défaut (transfert de courriel et import facebook)"
       list:
         display:
           - '=title'
@@ -64,7 +66,7 @@ generator:
           "Actualités": [actu_page_url, actu_feed_url]
           "Communiqués": [communique_page_url, communique_feed_url]
           "Liens": [facebook_page_url, twitter_page_url]
-          "Autres": [collecte_motivation]
+          "Autres": [collecte_motivation, diffusion_message]
         class: PetitionAdminForm
         fields:
           actu_page_url: { is_link: true }

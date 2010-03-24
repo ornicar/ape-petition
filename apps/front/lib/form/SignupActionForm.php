@@ -17,6 +17,8 @@ class SignupActionForm extends dmForm
     {
       $user = new DmUser();
       $user->email = $email;
+
+      $this->getEventDispatcher()->notify(new sfEvent($user, 'signup.action'));
     }
     
     $user->isLetterAction = true; // inscription à la newsletter action

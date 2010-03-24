@@ -31,6 +31,7 @@ class inscriptionActions extends myFrontModuleActions
 
     $form = new InscriptionDiffuserForm($user);
     $form->setDefault('message', $mail->getMessage()->getBody());
+    $form->setDefault('subject', $mail->getMessage()->getSubject());
 
     if($request->isMethod('post') && $request->hasParameter($form->getName()))
     {
@@ -130,6 +131,10 @@ class inscriptionActions extends myFrontModuleActions
     if($petition = $this->getUser()->getLastPetition())
     {
       $user->signPetition($petition, $this->getUser()->getLastCollection());
+
+      $this->getService('dispatcher')->notify(new sfEvent($user, 'signup.petition', array(
+        'petition' => $petition
+      )));
     }
   }
 }

@@ -49,6 +49,7 @@ Petition:
     communique_page_url: { type: string(255), notnull: false, extra: link }
     communique_feed_url: { type: string(255), notnull: false, extra: link }
     collecte_motivation: { type: clob }
+    diffusion_message:  { type: clob }
   relations:
     Signatories:
       class:            DmUser
