@@ -18,6 +18,6 @@ class InscriptionDiffuserForm extends dmForm
     $this->validatorSchema['message'] = new sfValidatorString();
 
     $this->widgetSchema['contacts'] = new sfWidgetFormTextarea();
-    $this->validatorSchema['contacts'] = new sfValidatorString();
+    $this->validatorSchema['contacts'] = new sfValidatorEmailList();
   }
 }
