@@ -12,6 +12,10 @@ class InscriptionPresentationForm extends DmUserForm
       $this->validatorSchema[$requiredField]->setOption('required', true);
     }
 
+    $this->validatorSchema['postal_code'] = new sfValidatorPostalCode(array(
+      'required' => true
+    ));
+
     $this->useFields($this->getUsedFields());
   }
 
