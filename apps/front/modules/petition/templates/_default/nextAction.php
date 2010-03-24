@@ -19,6 +19,6 @@ echo _tag('div.objectif',
  */
 echo _tag('div.action.clearfix',
   _tag('strong', 'ATTENTION').'<br />'.
-  'Diffusion de notre prochain action dans seulement'.'<br />'.
+  $action->title.', dans'.'<br />'.
   _tag('div.jquery_countdown', $action->counter)
 );
