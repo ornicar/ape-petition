@@ -12,12 +12,15 @@ class exportActions extends dmAdminBaseActions
       $export = new SignataireExport(dmDb::table('Signature'), array(
         'query' => $this->signataireFilter->getQuery()
       ));
+      
+      $charset = $this->signataireFilter->getValue('encoding');
 
       $csv = new dmCsvWriter(',', '"');
+      $csv->setCharset($charset, 'UTF-8');
 
       $this->download($csv->convert($export->generate()), array(
         'file_name' => 'Signataires de la pétition '.$this->signataireFilter->getPetition().' au '.date('Y-m-d').'.csv',
-        'mime_type' => 'text/csv; charset=utf-8'
+        'mime_type' => 'text/csv; charset='.$charset
       ));
     }
     
@@ -29,7 +32,10 @@ class exportActions extends dmAdminBaseActions
         'query' => $this->emailFilter->getQuery()
       ));
 
+      $charset = $this->emailFilter->getValue('encoding');
+
       $csv = new dmCsvWriter(',', '"');
+      $csv->setCharset($charset, 'UTF-8');
 
 //      $this->emailDebug =
 //      $this->emailFilter->getQuery()->getSqlQuery().
@@ -40,7 +46,7 @@ class exportActions extends dmAdminBaseActions
 
       $this->download($csv->convert($export->generate()), array(
         'file_name' => 'Emails au '.date('Y-m-d').'.csv',
-        'mime_type' => 'text/csv; charset=utf-8'
+        'mime_type' => 'text/csv; charset='.$charset
       ));
     }
   }

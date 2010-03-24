@@ -29,7 +29,22 @@ class EmailFilter extends BaseDmUserFormFilter
     ));
     $this->validatorSchema['departements'] = new sfValidatorString(array('required' => false));
 
-    $this->useFields(array('is_letter_actu', 'is_letter_action', 'tags_list', 'is_french', 'departements'));
+    $this->widgetSchema['encoding'] = new sfWidgetFormChoice(array(
+      'label' => 'Encodage',
+      'expanded' => true,
+      'choices' => dmArray::valueToKey($this->getEncodingChoices())
+    ));
+    $this->validatorSchema['encoding'] = new sfValidatorChoice(array(
+      'choices' => $this->getEncodingChoices()
+    ));
+    $this->setDefault('encoding', dmArray::first($this->getEncodingChoices()));
+
+    $this->useFields(array('is_letter_actu', 'is_letter_action', 'tags_list', 'is_french', 'departements', 'encoding'));
+  }
+
+  protected function getEncodingChoices()
+  {
+    return array('ISO-8859-1', 'UTF-8');
   }
 
   public function addTagsListColumnQuery(Doctrine_Query $query, $field, $values)
