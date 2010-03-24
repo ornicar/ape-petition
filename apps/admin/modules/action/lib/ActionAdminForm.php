@@ -12,9 +12,5 @@ class ActionAdminForm extends BaseActionForm
   public function configure()
   {
     parent::configure();
-
-    $this->widgetSchema['begin_at']->setOption('date', array(
-      'format' => '%day%/%month%/%year%'
-    ));
   }
 }

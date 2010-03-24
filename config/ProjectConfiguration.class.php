@@ -16,5 +16,20 @@ class ProjectConfiguration extends dmProjectConfiguration
     ));
 
     $this->setWebDir(sfConfig::get('sf_root_dir').'/public_html');
+    
+    $this->dispatcher->connect('form.post_configure', array($this, 'listenToFormPostConfigureEvent'));
+  }
+
+  public function listenToFormPostConfigureEvent(sfEvent $event)
+  {
+    foreach($event->getSubject()->getWidgetSchema()->getFields() as $key => $widget)
+    {
+      if($widget instanceof sfWidgetFormDateTime)
+      {
+        $widget->setOption('date', array(
+          'format' => '%day%/%month%/%year%'
+        ));
+      }
+    }
   }
 }
