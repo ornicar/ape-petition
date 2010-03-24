@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Affichage des messages de confirmation
+ */
 if($sf_user->hasFlash('presentation_form'))
 {
   echo _tag('p', 'Merci pour votre inscription. Vous recevrez très prochainement nos appels à Action.');
@@ -10,6 +13,24 @@ if($sf_user->hasFlash('creer_collecte_form'))
   echo _tag('p', 'Votre collecte a été créée.');
 }
 
+/*
+ * Affichage du titre et de l'accroche
+ * Différent si l'utilisateur vient de créer une collecte
+ */
+if($sf_user->hasFlash('creer_collecte_form'))
+{
+  echo _tag('h1', 'Diffusez votre pétition');
+  echo _tag('p', 'Aidez nous à diffuser nos actions plus largement. Plus nous serons nombreux à les recevoir, plus nous serons efficaces.');
+}
+else
+{
+  echo _tag('h1', 'Diffusez cette pétition');
+  echo _tag('p', 'Aidez nous à diffuser nos actions plus largement. Plus nous serons nombreux à les recevoir, plus nous serons efficaces.');
+}
+
+/*
+ * Affichage du formulaire
+ */
 echo $form->open();
 
 echo _open('ul');
