@@ -1,5 +1,14 @@
 <?php
 
+function mailto($text, $subject, $body)
+{
+  return sprintf('<a href="mailto:?subject=%s&body=%s">%s</a>',
+    htmlentities($subject, ENT_QUOTES, 'UTF-8'),
+    htmlentities(str_replace("\r\n", "%0A", $body), ENT_QUOTES, 'UTF-8'),
+    $text
+  );
+}
+
 function get_petition_partial(Petition $petition, $name, array $params = array())
 {
   $style = $petition->style;

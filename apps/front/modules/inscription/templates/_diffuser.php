@@ -32,7 +32,7 @@ echo $form->submit('Envoyer les invitations');
 
 echo $form->close();
 
-echo _link('mailto:')->text('Diffuser par email');
+echo mailto('Diffuser par email', $form->getDefault('subject'), $form->getDefault('message'));
 echo '<br />';
 echo _link('http://facebook.com/')
 ->text('Partager sur Facebook');
