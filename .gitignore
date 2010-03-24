@@ -2,6 +2,7 @@ config/databases.yml
 config/require_diem.php
 cache/*
 log/*
+logs
 data/dm/*
 data/fixtures/00_admin_users.yml
 public_html/cache/*
