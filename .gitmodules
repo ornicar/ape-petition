@@ -10,3 +10,6 @@
 [submodule "plugins/dmBitLyPlugin"]
 	path = plugins/dmBitLyPlugin
 	url = git://github.com/ornicar/dmBitLyPlugin.git
+[submodule "plugins/dmWidgetExternalVideoPlugin"]
+	path = plugins/dmWidgetExternalVideoPlugin
+	url = git://github.com/ornicar/dmWidgetExternalVideoPlugin.git
