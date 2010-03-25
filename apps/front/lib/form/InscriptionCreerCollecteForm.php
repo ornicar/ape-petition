@@ -30,6 +30,7 @@ class InscriptionCreerCollecteForm extends dmForm
     {
       $this->widgetSchema['photo'] = new sfWidgetFormInputFile();
       $this->validatorSchema['photo'] = new sfValidatorFile(array(
+        'required' => false,
         'mime_types' => 'web_images'
       ));
     }

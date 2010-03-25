@@ -27,7 +27,7 @@ echo _open('ul');
 
   if(isset($form['photo']))
   {
-    echo _tag('li', $form['photo']->label('Ajoutez votre photo *')->field()->error());
+    echo _tag('li', $form['photo']->label('Ajoutez votre photo')->field()->error());
   }
 
   echo _tag('li', $form['goal']->label('Mon objectif *')->field()->error());
