@@ -28,11 +28,6 @@ test:
       delivery_strategy: none
 
 dev:
-  mailer:
-    param:
-      delivery_strategy:  none
-      transport:
-        class:            Swift_NullTransport
 
 all:
   routing:
@@ -46,3 +41,9 @@ all:
     param:
       cache_key_use_vary_headers: true
       cache_key_use_host_name:    true
+
+  mailer:
+    param:
+      delivery_strategy:  none
+      transport:
+        class:            Swift_NullTransport
