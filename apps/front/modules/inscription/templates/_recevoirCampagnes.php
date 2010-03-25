@@ -1,5 +1,7 @@
 <?php
 
+include_partial('inscription/steps', array('step' => 3));
+
 echo _tag('h2', 'Abonnement annuel');
 
 echo _tag('p', "Abonnez vous pour soutenir l'association et recevez pendant une année :

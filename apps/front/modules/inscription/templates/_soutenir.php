@@ -1,5 +1,7 @@
 <?php
 
+include_partial('inscription/steps', array('step' => 4));
+
 echo _tag('h2', "Pour soutenir l'association");
 
 echo _link('http://diem-project.org')->param('email', $email)->text('Faire un don');

@@ -5,6 +5,8 @@ if($sf_user->hasFlash('suscribe_action_form'))
   echo _tag('p', 'Votre email a bien été enregistré.');
 }
 
+include_partial('inscription/steps', array('step' => 1));
+
 echo $form->open();
 
 echo _open('ul');

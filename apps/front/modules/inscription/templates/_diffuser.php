@@ -28,6 +28,8 @@ else
   echo _tag('p', 'Aidez nous à diffuser nos actions plus largement. Plus nous serons nombreux à les recevoir, plus nous serons efficaces.');
 }
 
+include_partial('inscription/steps', array('step' => 2));
+
 /*
  * Affichage du formulaire
  */
