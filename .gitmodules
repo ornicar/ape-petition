@@ -7,3 +7,6 @@
 [submodule "plugins/dmContactPlugin"]
 	path = plugins/dmContactPlugin
 	url = git://github.com/ornicar/dmContactPlugin.git
+[submodule "plugins/dmBitLyPlugin"]
+	path = plugins/dmBitLyPlugin
+	url = git://github.com/ornicar/dmBitLyPlugin.git
