@@ -19,7 +19,8 @@
       labels1: ['Année', 'Mois', 'Semaine', 'Jour', 'Heure', 'Minute', 'Seconde'],
       compactLabels: ['a', 'm', 's', 'j'],
       timeSeparator: ':',
-      isRTL: false
+      isRTL: false,
+      format: 'DHMS'
     };
     $.countdown.setDefaults($.countdown.regional['fr']);
     
