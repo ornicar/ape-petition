@@ -12,7 +12,8 @@ class ProjectConfiguration extends dmProjectConfiguration
     $this->enablePlugins(array(
       'dmTagPlugin',
       'dmFlowPlayerPlugin',
-      'dmContactPlugin'
+      'dmContactPlugin',
+      'dmBitLyPlugin'
     ));
 
     $this->setWebDir(sfConfig::get('sf_root_dir').'/public_html');

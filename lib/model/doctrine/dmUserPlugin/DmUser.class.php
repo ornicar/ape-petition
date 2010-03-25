@@ -45,6 +45,11 @@ class DmUser extends PluginDmUser
     return dmDb::table('Collection')->existsByUserAndPetition($this, $petition);
   }
 
+  public function getCollectionForPetition(Petition $petition)
+  {
+    return dmDb::table('Collection')->findByUserAndPetition($this, $petition);
+  }
+
   public function postInsert($event)
   {
     $this->getEventDispatcher()->notify(new sfEvent($this, 'user.created'));

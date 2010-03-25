@@ -25,7 +25,7 @@ generator:
         collecte_motivation:
           help: "Argumentaire par défaut pour les nouvelles collectes"
         diffusion_message:
-          help: "Message de diffusion par défaut (transfert de courriel et import facebook)"
+          help: "Message de diffusion par défaut (transfert de courriel et import facebook). La variable %url% représente la pétition ou la collecte."
       list:
         display:
           - '=title'

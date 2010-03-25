@@ -4,6 +4,9 @@ parameters:
 
   open_inviter.class:     dmOpenInviter
 
+  bit_ly_api.login:       ornicar
+  bit_ly_api.api_key:     R_fd1ff8d93e3a646717d98c37c7ecb307
+
 services:
 
   email_sender:

@@ -30,8 +30,25 @@ class inscriptionActions extends myFrontModuleActions
     ->render();
 
     $form = new InscriptionDiffuserForm($user);
-    $form->setDefault('message', $mail->getMessage()->getBody());
     $form->setDefault('subject', $mail->getMessage()->getSubject());
+    
+    if($petition = $this->getUser()->getLastPetition())
+    {
+      if($collection = $user->getCollectionForPetition($petition))
+      {
+        $url = $this->getHelper()->link($collection)->getAbsoluteHref();
+      }
+      else
+      {
+        $url = $this->getHelper()->link($petition)->getAbsoluteHref();
+      }
+      
+      $form->setDefault('message', str_replace('%url%', $url, $petition->diffusionMessage));
+    }
+    else
+    {
+      $form->setDefault('message', $mail->getMessage()->getBody());
+    }
 
     if($request->isMethod('post') && $request->hasParameter($form->getName()))
     {
