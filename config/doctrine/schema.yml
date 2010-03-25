@@ -24,7 +24,7 @@ DmUser:
       class:            DmMedia
       local:            photo_id
       foreignAlias:     Users
-      onDelete:         RESTRICT
+      onDelete:         SET NULL
 
 Country:
   columns:
@@ -160,7 +160,7 @@ Partner:
       class:            DmMedia
       local:            image_id
       foreignAlias:     Partners
-      onDelete:         RESTRICT
+      onDelete:         SET NULL
 
 PartnerPetition:
   columns:
@@ -197,7 +197,7 @@ Product:
       class:            DmMedia
       local:            image_id
       foreignAlias:     Products
-      onDelete:         RESTRICT
+      onDelete:         SET NULL
 
 ProductPetition:
   columns:
