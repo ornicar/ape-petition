@@ -22,6 +22,8 @@ class mainComponents extends myFrontModuleComponents
   public function executeSharePage()
   {
     $this->url = $this->getHelper()->link($this->getPage())->getAbsoluteHref();
+
+    $this->shortUrl = $this->getService('bit_ly_api')->shorten($this->url);
   }
 
   public function executeTopMenu()
