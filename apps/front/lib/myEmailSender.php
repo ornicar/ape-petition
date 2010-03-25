@@ -82,6 +82,12 @@ class myEmailSender
       $user = $event->getSubject();
       $petition = $event['petition'];
 
+      $petitionDiffusionMessage = str_replace(
+        '%url%',
+        $this->getLink($petition)->getAbsoluteHref(),
+        $petition->diffusionMessage
+      );
+
       $this->createMail()
       ->setTemplate('inscription_confirmation_petition')
       ->addValues(array(
@@ -89,6 +95,11 @@ class myEmailSender
         'email'   => $user->email
       ))
       ->addValues($petition, 'petition_')
+      // replace the petition diffusion message
+      // with the one with %url% replaced
+      ->addValues(array(
+        'petition_diffusion_message' => $petitionDiffusionMessage
+      ))
       ->send();
     }
     catch(Exception $e)
