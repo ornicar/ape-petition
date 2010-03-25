@@ -14,7 +14,7 @@ echo _open('div.products');
   foreach($petition->activeProducts as $product)
   {
     echo _open('li.clearfix');
-
+    
       echo _media($product->Image)->size(120, 120)->alt($product->title);
       echo _link($product->url)->text($product->title);
       echo $product->text;

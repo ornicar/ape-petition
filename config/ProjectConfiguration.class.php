@@ -13,7 +13,8 @@ class ProjectConfiguration extends dmProjectConfiguration
       'dmTagPlugin',
       'dmFlowPlayerPlugin',
       'dmContactPlugin',
-      'dmBitLyPlugin'
+      'dmBitLyPlugin',
+      'dmWidgetExternalVideoPlugin'
     ));
 
     $this->setWebDir(sfConfig::get('sf_root_dir').'/public_html');
