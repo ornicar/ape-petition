@@ -29,23 +29,4 @@ class petitionComponents extends myFrontModuleComponents
     $this->signupForm = $this->forms['signUpPetition'];
   }
 
-  public function executeShowTitle()
-  {
-    $query = $this->getShowQuery();
-    
-    $this->petition = $this->getRecord($query);
-  }
-
-  public function executeShowTopMenu()
-  {
-    $query = $this->getShowQuery();
-
-    $this->petition = $this->getRecord($query);
-    
-    $this->menu = $this->getService('menu', 'PetitionMenu')
-    ->setPetition($this->petition)
-    ->build();
-  }
-
-
 }

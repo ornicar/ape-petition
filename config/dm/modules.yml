@@ -8,7 +8,10 @@ Content:
         sitemap:
           cache:      true
         sharePage:
-        topMenu:
+          cache:      false
+        currentTitle:
+          cache:      true
+        currentMenu:
           cache:      true
 
   Petition:
@@ -18,11 +21,7 @@ Content:
       page:           true
       components:
         list:
-        showTitle:
-          cache:      true
         showContent:
-        showTopMenu:
-          cache:      true
 
     action:
       components:

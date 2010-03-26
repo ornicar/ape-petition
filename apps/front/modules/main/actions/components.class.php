@@ -3,6 +3,8 @@
  * Main components
  * 
  * No redirection nor database manipulation ( insert, update, delete ) here
+ * 
+ * 
  */
 class mainComponents extends myFrontModuleComponents
 {
@@ -22,13 +24,36 @@ class mainComponents extends myFrontModuleComponents
   public function executeSharePage()
   {
     $this->url = $this->getHelper()->link($this->getPage())->getAbsoluteHref();
-
     $this->shortUrl = $this->getService('bit_ly_api')->shorten($this->url);
   }
 
-  public function executeTopMenu()
+  public function executeCurrentTitle()
   {
-    $this->menu = $this->getService('menu', 'HomeMenu')->build();
+    if($petition = $this->getUser()->getLastPetition())
+    {
+      $this->text = $petition->title;
+      $this->link = $petition;
+    }
+    else
+    {
+      $this->text = 'Un clic pour la Terre';
+      $this->link = 'main/root';
+    }
+  }
+
+  public function executeCurrentMenu()
+  {
+    if($petition = $this->getUser()->getLastPetition())
+    {
+      $this->menu = $this->getService('menu', 'PetitionMenu')
+      ->setPetition($petition)
+      ->build();
+    }
+    else
+    {
+      $this->menu = $this->getService('menu', 'HomeMenu')
+      ->build();
+    }
   }
 
 
