@@ -41,21 +41,6 @@ include_collection_partial($collection, 'signupForm', array('form' => $signupFor
 include_collection_partial($collection, 'share');
 
 /*
- * Actualités
- */
-include_petition_partial($collection->Petition, 'actualites');
-
-/*
- * Communiqués
- */
-include_petition_partial($collection->Petition, 'communiques');
-
-/*
- * Boutique
- */
-include_petition_partial($collection->Petition, 'products');
-
-/*
  * Partenaires
  */
 include_petition_partial($collection->Petition, 'partners');
