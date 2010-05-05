@@ -22,7 +22,7 @@ class DmUserForm extends PluginDmUserForm
 
     foreach($this->validatorSchema->getFields() as $field => $validator)
     {
-      if($validator instanceof sfValidatorString)
+      if('sfValidatorString' === get_class($validator))
       {
         $this->validatorSchema[$field] = new dmValidatorStringEscape($validator->getOptions(), $validator->getMessages());
       }
