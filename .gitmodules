@@ -13,3 +13,6 @@
 [submodule "plugins/dmWidgetExternalVideoPlugin"]
 	path = plugins/dmWidgetExternalVideoPlugin
 	url = git://github.com/ornicar/dmWidgetExternalVideoPlugin.git
+[submodule "plugins/dmBotPlugin"]
+	path = plugins/dmBotPlugin
+	url = git://github.com/ornicar/dmBotPlugin.git
